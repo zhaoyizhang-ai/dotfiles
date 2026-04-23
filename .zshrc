@@ -7,7 +7,7 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
@@ -29,3 +29,31 @@ unset __conda_setup
 . /opt/homebrew/etc/profile.d/autojump.sh
 
 alias cc='source ~/claude_env.sh && claude --dangerously-skip-permissions'
+
+# --- Solarized prompt (ported from mathiasbynens/.bash_prompt) ---
+
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats ' on %F{61}%b%f%u%c'
+zstyle ':vcs_info:git:*' actionformats ' on %F{61}%b%f %F{red}(%a)%f'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git:*' unstagedstr ' %F{33}[!]%f'
+zstyle ':vcs_info:git:*' stagedstr ' %F{64}[+]%f'
+
+setopt PROMPT_SUBST
+
+PROMPT='
+%F{166}%n%f %F{15}at%f %F{136}%m%f %F{15}in%f %F{64}%~%f${vcs_info_msg_0_}
+%F{15}$ %f'
+
+# --- ls colors (macOS) ---
+export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
+alias ls="command ls -G"
+alias l="ls -lF"
+alias la="ls -lAF"
+alias lsd="ls -lF | grep '^d'"
+
+# colored grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
