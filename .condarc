@@ -1,0 +1,10 @@
+show_channel_urls: true
+custom_channels:
+  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
+channel_priority: strict
+channels:
+  - defaults
