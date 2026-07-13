@@ -1,0 +1,4 @@
+interface:
+  display_name: "Progress Read"
+  short_description: "Read project handoff context before work"
+  default_prompt: "Use $progress-read to read the current project handoff and tell me what the next AI should know."

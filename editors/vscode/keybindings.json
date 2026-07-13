@@ -1,0 +1,12 @@
+// 将键绑定放在此文件中以覆盖默认值
+[
+    {
+        "key": "shift+cmd+r",
+        "command": "-rerunSearchEditorSearch",
+        "when": "inSearchEditor"
+    },
+    {
+        "key": "cmd+h",
+        "command": "python.execInTerminal"
+    }
+]

@@ -1,26 +1,54 @@
-# dotfiles
+# macOS + AI dotfiles
 
-My personal macOS terminal configuration.
+这套配置用于恢复 macOS 终端、开发工具和个人 AI 工具工作流，重点覆盖 Codex、Claude Code、共享 Agents Skills、VS Code/Cursor、Homebrew 与 iTerm2。
 
-## Files
+## 已备份内容
 
-- `.zshrc` — Zsh config (Oh My Zsh, plugins, aliases, Codex/proxy helpers)
-- `.zprofile` — PATH and environment setup
-- `.tmux.conf` — Tmux config (C-a prefix)
-- `.proxy.sh` — Proxy toggle (proxy on/off/status)
-- `.condarc` — Conda mirror config (Tsinghua)
-- `iterm2.plist` — iTerm2 preferences backup
-- `Catppuccin-Mocha.itermcolors` — iTerm2 color scheme
-- `Solarized-Dark.itermcolors` — iTerm2 color scheme
+- 根目录：Zsh、Bash、Git 模板、Tmux、Conda、代理脚本和 iTerm2 配色/偏好。
+- `ai/codex/`：全局 `AGENTS.md`、脱敏后的 `config.toml`、规则、通知脚本、个人 Skills 和 Skill 来源登记表。
+- `ai/claude/`：脱敏后的设置、commands、hooks、MCP 源码和 Skills。
+- `ai/agents/`：Codex/Claude 共用的个人 Skills。
+- `editors/`：VS Code 与 Cursor 的设置、快捷键和 snippets。
+- `software/`：Homebrew Bundle 与编辑器扩展清单。
+- `developer/gh/config.yml`：GitHub CLI 的非认证设置。
 
-## Restore
+## 永远不备份
+
+仓库是公开的。以下内容会被同步脚本和 `.gitignore` 排除：
+
+- API key、token、Cookie、密码、私钥和 GitHub 登录凭据；
+- Codex/Claude 的 `auth.json`、`.env`、会话、历史、记忆、项目记录和粘贴缓存；
+- SQLite 状态库、日志、遥测、浏览器状态、虚拟环境、依赖缓存和安装 ID；
+- GitHub CLI 的 `hosts.yml` 和 SSH 私钥。
+
+配置里的 `__HOME__` 会在恢复时自动替换；`__SET_LOCALLY__`、`__GIT_NAME__`、`__GIT_EMAIL__` 必须在本机填写，不能提交真实值。
+
+## 恢复
+
+先查看将要恢复的内容，然后运行：
 
 ```bash
-cp .zshrc ~/.zshrc && source ~/.zshrc
-cp .tmux.conf ~/.tmux.conf
-cp .proxy.sh ~/.proxy.sh
-cp .condarc ~/.condarc
-cp iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+git clone https://github.com/zhaoyizhang-ai/dotfiles.git
+cd dotfiles
+./scripts/scan-secrets.py
+./install.sh
 ```
 
-Then restart iTerm2.
+恢复脚本会先把被覆盖的文件保存到 `~/.dotfiles-restore-backup/<时间戳>/`。它不会恢复认证状态；完成后需要重新登录 Codex、Claude Code 和 GitHub CLI，并在本机补充秘密值。iTerm2 设置恢复后需重启 iTerm2。
+
+恢复软件与 VS Code 扩展：
+
+```bash
+brew bundle --file software/Brewfile
+xargs -L 1 code --install-extension < software/vscode-extensions.txt
+```
+
+## 更新备份
+
+```bash
+./scripts/sync-from-home.py
+./scripts/scan-secrets.py
+git diff --stat
+```
+
+`sync-from-home.py` 使用白名单复制，并对 Home 路径、Git 身份、常见凭据赋值和 iTerm 动态状态做脱敏。扫描未通过时不要提交。

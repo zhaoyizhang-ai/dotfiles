@@ -1,0 +1,21 @@
+{
+  // 模板名称（自定义，仅用于识别）
+  "C++ Basic Template": {
+    "prefix": "cpp", // 触发词：输入 cpp 后按 Tab
+    "body": [
+      "#include <iostream>",  // 标准输入输出头文件
+      "#include <vector>",   // 常用容器（可选，按需删除）
+      "#include <string>",   // 字符串处理（可选，按需删除）
+      "#include <cstring>"
+      "#include <algorithm>",   // 字符串处理（可选，按需删除）
+      "#include <cmath>",   
+      "#include <utility>"
+      "using namespace std;", // 避免频繁写 std::（可选，不推荐大型项目使用）
+      "",
+      "int main() {",
+      "\t$0", // 光标最终定位的位置
+      "",
+      "\treturn 0;",
+      "}"
+  }
+}

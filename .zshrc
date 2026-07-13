@@ -6,6 +6,7 @@ export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottle
 export HOMEBREW_NO_AUTO_UPDATE=true
 
 # Codex API Keys
+export MIAOAPI_KEY="__SET_LOCALLY__"
 
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
@@ -33,6 +34,7 @@ unset __conda_setup
 alias cc='source ~/claude_env.sh && claude --dangerously-skip-permissions'
 alias ds='source ~/ds.sh && claude --dangerously-skip-permissions'
 alias mi='source ~/mi.sh && claude --dangerously-skip-permissions'
+alias gk='grok --permission-mode bypassPermissions'
 
 # --- Solarized prompt (ported from mathiasbynens/.bash_prompt) ---
 
@@ -62,7 +64,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-export PATH="/Users/az/.local/bin:$PATH"  # Added by Deck.app
+export PATH="__HOME__/.local/bin:$PATH"  # Added by Deck.app
 
 
 # OpenAI Codex CLI (xhub proxy)
@@ -79,6 +81,7 @@ cxapp() {
   launchctl setenv ASTA_API_KEY "$ASTA_API_KEY"
   launchctl setenv S2_API_KEY "$S2_API_KEY"
   launchctl setenv SEMANTIC_SCHOLAR_API_KEY "$SEMANTIC_SCHOLAR_API_KEY"
+  sed -i '' 's/^model_provider = ".*"/model_provider = "xhub"/' ~/.codex/config.toml
   open -a "/Applications/Codex.app" "$@"
 }
 
@@ -90,6 +93,7 @@ cxcpp() {
   launchctl setenv ASTA_API_KEY "$ASTA_API_KEY"
   launchctl setenv S2_API_KEY "$S2_API_KEY"
   launchctl setenv SEMANTIC_SCHOLAR_API_KEY "$SEMANTIC_SCHOLAR_API_KEY"
+  sed -i '' 's/^model_provider = ".*"/model_provider = "xhub"/' ~/.codex/config.toml
   pkill -f "Codex.app/Contents/MacOS/Codex" 2>/dev/null
   sleep 1
   open -a "/Applications/Codex++.app" "$@"
@@ -99,13 +103,21 @@ cxcpp() {
 # This path is fully isolated from cx/cxapp and does not touch Codex config.
 pkucximg() {
   source "$HOME/.miaoapi_codex_pku.sh"
-  /Users/az/imagegen-venv/bin/python /Users/az/.codex/skills/.system/imagegen/scripts/image_gen.py "$@"
+  __HOME__/imagegen-venv/bin/python __HOME__/.codex/skills/.system/imagegen/scripts/image_gen.py "$@"
 }
 
 # Default to the provider's image2 path for convenience.
 pkucximg2() {
   source "$HOME/.miaoapi_codex_pku.sh"
-  /Users/az/imagegen-venv/bin/python /Users/az/.codex/skills/.system/imagegen/scripts/image_gen.py generate --model gpt-image-2 "$@"
+  __HOME__/imagegen-venv/bin/python __HOME__/.codex/skills/.system/imagegen/scripts/image_gen.py generate --model gpt-image-2 "$@"
+}
+
+# Codex App via miaoapi (PKU) — uses miaoapi provider.
+miaoapp() {
+  source "$HOME/.pkucx_codex.sh"
+  launchctl setenv MIAOAPI_KEY "$MIAOAPI_KEY"
+  sed -i '' 's/^model_provider = "xhub"/model_provider = "miaoapi"/' ~/.codex/config.toml
+  open -a "/Applications/Codex.app" "$@"
 }
 
 # Codex CLI via miaoapi (PKU) — uses gpt-5.5.
@@ -114,5 +126,50 @@ pkucx() {
   codex --dangerously-bypass-approvals-and-sandbox -c model_provider=miaoapi "$@"
 }
 
+# 一键切换 Codex 到 xhub 并重启 App
+use-xhub() {
+  source "$HOME/.codex-env.sh"
+  sed -i '' 's/^model_provider = ".*"/model_provider = "xhub"/' ~/.codex/config.toml
+  pkill -f "Codex.app/Contents/MacOS/Codex" 2>/dev/null
+  sleep 1
+  open -a "/Applications/Codex.app"
+  echo "✅ Codex → xhub"
+}
+
+# 一键切换 Codex 到官方渠道 (ChatGPT auth) 并重启 App
+use-official() {
+  sed -i '' 's/^model_provider = ".*"/model_provider = "openai"/' ~/.codex/config.toml
+  pkill -f "Codex.app/Contents/MacOS/Codex" 2>/dev/null
+  sleep 1
+  open -a "/Applications/Codex.app"
+  echo "✅ Codex → 官方 ChatGPT"
+}
+
+# 一键切换 xhub ↔ 官方
+cx-switch() {
+  local current=$(grep '^model_provider' ~/.codex/config.toml | sed 's/.*= *"\(.*\)"/\1/')
+  if [[ "$current" == "xhub" ]]; then
+    use-official
+  else
+    use-xhub
+  fi
+}
+
+# 一键切换 xhub ↔ 官方
+cx-switch() {
+  local current=$(grep '^model_provider' ~/.codex/config.toml | sed 's/.*= *"\(.*\)"/\1/')
+  if [[ "$current" == "xhub" ]]; then
+    use-official
+  else
+    use-xhub
+  fi
+}
+
 # 代理开关: proxy on | off | status / chkproxy 检测连通
 source "$HOME/.proxy.sh"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<

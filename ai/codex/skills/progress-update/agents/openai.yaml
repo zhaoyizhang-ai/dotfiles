@@ -1,0 +1,4 @@
+interface:
+  display_name: "Progress Update"
+  short_description: "Update compact AI handoff progress"
+  default_prompt: "Use $progress-update to update progress.md with what happened this turn and what the next AI should do."

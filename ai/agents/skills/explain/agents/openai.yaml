@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explain"
+  short_description: "从零讲清研究问题、完整因果链、方法证据、结论及实际意义"
+  default_prompt: "Use $explain to explain this paper or research idea from zero, then reconstruct its reasoning, method, evidence, conclusions, and practical meaning in one Markdown note."
