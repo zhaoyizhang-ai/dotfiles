@@ -1,0 +1,72 @@
+{
+  "skillListingBudgetFraction": 0.02,
+  "env": {
+    "CLAUDE_CODE_DISABLE_AUTO_UPDATE": "1",
+    "http_proxy": "http://127.0.0.1:1089",
+    "https_proxy": "http://127.0.0.1:1089",
+    "HTTP_PROXY": "http://127.0.0.1:1089",
+    "HTTPS_PROXY": "http://127.0.0.1:1089",
+    "ALL_PROXY": "socks5://127.0.0.1:1084",
+    "no_proxy": "localhost,127.0.0.1,::1",
+    "NO_PROXY": "localhost,127.0.0.1,::1"
+  },
+  "permissions": {
+    "allow": [
+      "mcp__mineru__*"
+    ]
+  },
+  "model": "fable",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.claude/hooks/scripts/notify.sh notification",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.claude/hooks/scripts/notify.sh stop",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.claude/hooks/scripts/clear_pending.sh",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.claude/hooks/scripts/clear_pending.sh",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  },
+  "skipWebFetchPreflight": true,
+  "effortLevel": "low",
+  "skipDangerousModePermissionPrompt": true
+}

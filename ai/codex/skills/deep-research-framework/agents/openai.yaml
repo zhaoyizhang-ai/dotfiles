@@ -1,0 +1,4 @@
+interface:
+  display_name: "fst学姐 · Deep Research Framework"
+  short_description: "fst学姐提供的完整深度研究、头脑风暴与观点批判框架"
+  default_prompt: "使用 $deep-research-framework 按 fst 学姐版本启动基于文献的深度研究或头脑风暴。"

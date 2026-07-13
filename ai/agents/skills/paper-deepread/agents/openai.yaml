@@ -1,0 +1,4 @@
+interface:
+  display_name: "zjy学长 · 论文精读"
+  short_description: "zjy学长提供的专题研究包式论文、代码、数据与复现精读"
+  default_prompt: "使用 $paper-deepread 按 zjy 学长版本精读这篇论文，并保存完整研究档案。"

@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "skills": {
+    "asta-skill": {
+      "source": "Agents365-ai/365-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Agents365-ai/365-skills.git",
+      "skillPath": "plugins/asta/skills/asta-skill/SKILL.md",
+      "skillFolderHash": "2ec81700b7fc14b9fab3b1eb74895ee907e87a29",
+      "installedAt": "2026-05-26T14:32:26.681Z",
+      "updatedAt": "2026-05-26T14:32:26.681Z"
+    },
+    "grill-with-docs": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
+      "skillFolderHash": "2c6aa7079cc705a6e0c319fcf23a0fa39968de29",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-05-26T16:22:27.409Z",
+      "updatedAt": "2026-05-26T16:22:27.409Z"
+    },
+    "setup-matt-pocock-skills": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
+      "skillFolderHash": "77638955bebe492948244f1338e54ca1a9445c29",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-05-26T16:22:27.411Z",
+      "updatedAt": "2026-05-26T16:22:27.411Z"
+    }
+  },
+  "dismissed": {}
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "对话驱动学习笔记"
+  short_description: "准备探索式讲解对话，并将完整追问过程重写为连贯学习笔记"
+  default_prompt: "Use $dialogue-to-learning-note to prepare my first-stage explainer prompt or turn this completed dialogue into a cohesive Chinese learning note."

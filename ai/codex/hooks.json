@@ -1,0 +1,52 @@
+{
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.codex/cc-notify-hooks/scripts/notify.sh notification",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.codex/cc-notify-hooks/scripts/notify.sh stop",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.codex/cc-notify-hooks/scripts/clear_pending.sh",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__HOME__/.codex/cc-notify-hooks/scripts/clear_pending.sh",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  }
+}

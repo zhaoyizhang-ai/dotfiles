@@ -1,0 +1,4 @@
+interface:
+  display_name: "论文深度讲解"
+  short_description: "通读一手论文，嵌入原始架构图并讲清公式、证据与边界"
+  default_prompt: "Use $paper-quickread to read this model paper fully and save an Obsidian note with its architecture figure and walkthrough."

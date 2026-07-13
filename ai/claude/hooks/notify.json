@@ -1,0 +1,11 @@
+{
+  "channels": {
+    "macos": {
+      "enabled": true,
+      "delay": 3,
+      "sound": "Glass",
+      "events": ["notification", "stop"]
+    }
+  },
+  "rate_limit": 10
+}

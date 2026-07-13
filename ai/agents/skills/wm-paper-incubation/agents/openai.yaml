@@ -1,0 +1,4 @@
+interface:
+  display_name: "WM Paper Incubation"
+  short_description: "Read WM papers into project decisions"
+  default_prompt: "Use $wm-paper-incubation to explain this paper for my video-model-to-action-conditioned-world-model direction and save it under __HOME__/Desktop/papers."

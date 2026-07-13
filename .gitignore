@@ -3,3 +3,41 @@ claude_env.sh
 .env*
 *_secret*
 *api_key*
+# macOS and editor noise
+.DS_Store
+*.swp
+*.tmp
+
+# Credentials and local-only state: never commit these
+.env
+.env.*
+auth.json
+hosts.yml
+credentials.json
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+**/history.jsonl
+**/session_index.jsonl
+**/sessions/
+**/logs/
+**/cache/
+**/state*.sqlite*
+**/*.sqlite*
+**/shell_snapshots/
+**/telemetry/
+**/paste-cache/
+**/file-history/
+**/projects/
+**/plans/
+**/backups/
+**/hooks/state/
+
+# Generated dependency/cache directories
+**/__pycache__/
+**/node_modules/
+**/.venv/
+**/venv/
+**/dist/
+**/build/

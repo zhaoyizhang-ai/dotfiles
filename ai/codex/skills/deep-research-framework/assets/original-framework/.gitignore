@@ -1,0 +1,34 @@
+# Research project instances
+projects/
+
+# Research artifacts (comment out lines if you want to track these)
+scratchpad/*
+!scratchpad/.gitkeep
+
+# Optionally ignore individual outputs during research
+# outputs/individual/*
+# !outputs/individual/.gitkeep
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+CLAUDE.md
+claude.sh
+start.sh
+api_proxy.py
+.claude/
+
+# Temporary files
+*.tmp
+*.bak
+.temp/
+.git.bak/
+
+outputs/
