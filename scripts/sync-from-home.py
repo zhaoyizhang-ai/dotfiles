@@ -284,6 +284,22 @@ def main() -> None:
     gh_config = REPO / "developer" / "gh" / "config.yml"
     copy_file(HOME / ".config" / "gh" / "config.yml", gh_config)
 
+    # Rime/Squirrel: keep portable configuration, not learned phrases or runtime state.
+    rime_source = HOME / "Library" / "Rime"
+    rime_target = REPO / "input-method" / "rime"
+    reset_dir(rime_target)
+    rime_excluded = {"installation.yaml", "user.yaml", "custom_phrase.txt"}
+    if rime_source.is_dir():
+        for source in rime_source.iterdir():
+            if source.name in rime_excluded:
+                continue
+            if source.is_file() and (
+                source.suffix in {".yaml", ".lua", ".md"} or source.name == "LICENSE"
+            ):
+                copy_file(source, rime_target / source.name)
+        for dirname in ("lua", "others"):
+            copy_dir(rime_source / dirname, rime_target / dirname)
+
     # Refresh iTerm preferences as XML so home paths can be parameterized.
     iterm_source = HOME / "Library" / "Preferences" / "com.googlecode.iterm2.plist"
     if iterm_source.is_file():

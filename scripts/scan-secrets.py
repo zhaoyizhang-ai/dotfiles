@@ -50,6 +50,13 @@ def main() -> int:
     findings: list[tuple[str, int, str]] = []
     for path in tracked_files():
         relative = path.relative_to(REPO)
+        if relative.as_posix().startswith("input-method/rime/") and path.name in {
+            "installation.yaml",
+            "user.yaml",
+            "custom_phrase.txt",
+        }:
+            findings.append((str(relative), 0, "forbidden-rime-private-data"))
+            continue
         if "hooks/state" in relative.as_posix():
             findings.append((str(relative), 0, "forbidden-runtime-state"))
             continue
