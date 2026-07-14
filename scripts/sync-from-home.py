@@ -177,6 +177,73 @@ def sanitize_iterm(path: Path) -> None:
         plistlib.dump(clean(data), stream, fmt=plistlib.FMT_XML, sort_keys=False)
 
 
+def export_rcmd_preferences(path: Path) -> None:
+    result = subprocess.run(
+        ["defaults", "export", "com.lowtechguys.rcmd", "-"],
+        check=True,
+        capture_output=True,
+    )
+    data = plistlib.loads(result.stdout)
+    exact_keys = {
+        "activationMode",
+        "alwaysHideOthers",
+        "appKeyAssignments",
+        "appSort",
+        "appSortReverse",
+        "assignKeyTriggerKeys",
+        "createMissingSpaces",
+        "dynamicAppKeyAssignments",
+        "exposeKey",
+        "fuzzySearch",
+        "ignoredApps",
+        "ignoredKeys",
+        "minimizeKey",
+        "minimizeOnlyFocusedWindowOnMinus",
+        "osdCurrentSpaceOnly",
+        "osdLook",
+        "overrideUserDefaults",
+        "pauseApps",
+        "searchMatchMode",
+        "searchOptionalPrefixes",
+        "searchQueryPins",
+        "spaceMode",
+        "specialKey",
+        "triggerKeys",
+        "whenAlreadyFocusedAction",
+    }
+    prefixes = (
+        "appSwitcher",
+        "enable",
+        "focus",
+        "hide",
+        "hijack",
+        "show",
+        "stage",
+        "sticky",
+        "switcher",
+        "tabCycle",
+        "window",
+    )
+    safe = {
+        key: value
+        for key, value in data.items()
+        if key in exact_keys or key.startswith(prefixes)
+    }
+
+    def clean(value):
+        if isinstance(value, dict):
+            return {key: clean(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [clean(item) for item in value]
+        if isinstance(value, str):
+            return value.replace(str(HOME), "__HOME__")
+        return value
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("wb") as stream:
+        plistlib.dump(clean(safe), stream, fmt=plistlib.FMT_XML, sort_keys=True)
+
+
 def sanitize_text(path: Path) -> None:
     try:
         raw = path.read_bytes()
@@ -231,6 +298,11 @@ def write_inventory() -> None:
             content = brewfile.read_text(encoding="utf-8")
             if 'cask "squirrel-app"' not in content:
                 brewfile.write_text(content.rstrip() + '\ncask "squirrel-app"\n', encoding="utf-8")
+        rcmd_app = Path("/Applications/rcmd.app")
+        if rcmd_app.exists():
+            content = brewfile.read_text(encoding="utf-8")
+            if 'cask "rcmd"' not in content:
+                brewfile.write_text(content.rstrip() + '\ncask "rcmd"\n', encoding="utf-8")
 
     commands = {
         "vscode-extensions.txt": ["code", "--list-extensions"],
@@ -289,6 +361,9 @@ def main() -> None:
 
     gh_config = REPO / "developer" / "gh" / "config.yml"
     copy_file(HOME / ".config" / "gh" / "config.yml", gh_config)
+
+    if Path("/Applications/rcmd.app").exists():
+        export_rcmd_preferences(REPO / "macos" / "rcmd" / "preferences.plist")
 
     # Rime/Squirrel: keep portable configuration, not learned phrases or runtime state.
     rime_source = HOME / "Library" / "Rime"

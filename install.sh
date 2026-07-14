@@ -77,6 +77,10 @@ else
   echo "Squirrel is not installed; run ./scripts/restore-rime.sh to install and deploy it."
 fi
 
+if [[ -x "$REPO_DIR/scripts/restore-rcmd.sh" ]]; then
+  "$REPO_DIR/scripts/restore-rcmd.sh"
+fi
+
 echo "Configuration restored. Previous files were saved under: $BACKUP_DIR"
 echo "Secrets and login state were intentionally not restored; sign in and set API keys locally."
 echo "Rime configuration is included and was redeployed when Squirrel was available."

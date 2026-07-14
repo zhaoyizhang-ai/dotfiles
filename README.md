@@ -12,6 +12,7 @@
 - `software/`：Homebrew Bundle 与编辑器扩展清单。
 - `developer/gh/config.yml`：GitHub CLI 的非认证设置。
 - `input-method/rime/`：当前完整可部署的 Rime/Squirrel 方案、皮肤、Lua、主词库和个人短语。
+- `macos/rcmd/`：rcmd 的窗口/App 快捷键、切换行为、搜索规则和 OSD 外观。
 
 ## 永远不备份
 
@@ -22,6 +23,7 @@
 - SQLite 状态库、日志、遥测、浏览器状态、虚拟环境、依赖缓存和安装 ID；
 - GitHub CLI 的 `hosts.yml` 和 SSH 私钥。
 - Rime 的安装 ID、用户词频数据库、同步目录和编译产物。
+- rcmd 的 Paddle 授权、Sentry ID、窗口历史、应用扫描清单和权限状态。
 
 配置里的 `__HOME__` 会在恢复时自动替换；`__SET_LOCALLY__`、`__GIT_NAME__`、`__GIT_EMAIL__` 必须在本机填写，不能提交真实值。
 
@@ -39,6 +41,8 @@ cd dotfiles
 恢复脚本会先把被覆盖的文件保存到 `~/.dotfiles-restore-backup/<时间戳>/`。它不会恢复认证状态；完成后需要重新登录 Codex、Claude Code 和 GitHub CLI，并在本机补充秘密值。iTerm2 设置恢复后需重启 iTerm2。
 
 Rime 的当前主词库与个人配置已经完整包含。新 Mac 可直接运行 `./scripts/restore-rime.sh`：脚本会安装 Squirrel、备份目标机已有 Rime 数据、恢复配置并重新部署。
+
+rcmd 可运行 `./scripts/restore-rcmd.sh` 单独恢复；脚本会保留目标机授权状态，只合并快捷键和窗口切换配置。macOS 辅助功能权限仍需在系统设置中手动授予。
 
 恢复软件与 VS Code 扩展：
 
