@@ -2,15 +2,6 @@
 
 `rime/` 保存可公开、可迁移的输入法配置：方案 YAML、Squirrel 外观、Lua 脚本、符号表和小型辅助词典。
 
-## 个性化主题
-
-`rime/squirrel.custom.yaml` 内置两套个人 Catppuccin 风格主题，并跟随 macOS 外观自动切换：
-
-- `zhaoyi_latte`：浅色模式；
-- `zhaoyi_mocha`：深色模式。
-
-两套主题均使用横向候选栏、苹方 16pt、8px 圆角，并保留较宽松的候选词与上下间距。
-
 ## 恢复顺序
 
 1. 安装 [Squirrel](https://rime.im/download/)。
