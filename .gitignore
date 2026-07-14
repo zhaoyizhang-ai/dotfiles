@@ -41,3 +41,10 @@ id_ed25519*
 **/venv/
 **/dist/
 **/build/
+
+# Rime/Squirrel private learning and runtime data
+input-method/rime/installation.yaml
+input-method/rime/user.yaml
+input-method/rime/build/
+input-method/rime/sync/
+input-method/rime/*.userdb/

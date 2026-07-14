@@ -68,6 +68,15 @@ restore_tree "$REPO_DIR/editors/cursor/snippets" "$HOME/Library/Application Supp
 
 restore_file "$REPO_DIR/developer/gh/config.yml" "$HOME/.config/gh/config.yml"
 restore_file "$REPO_DIR/iterm2.plist" "$HOME/Library/Preferences/com.googlecode.iterm2.plist"
+restore_tree "$REPO_DIR/input-method/rime" "$HOME/Library/Rime"
+
+SQUIRREL_BIN="/Library/Input Methods/Squirrel.app/Contents/MacOS/Squirrel"
+if [[ -x "$SQUIRREL_BIN" ]]; then
+  "$SQUIRREL_BIN" --reload
+else
+  echo "Squirrel is not installed; run ./scripts/restore-rime.sh to install and deploy it."
+fi
 
 echo "Configuration restored. Previous files were saved under: $BACKUP_DIR"
 echo "Secrets and login state were intentionally not restored; sign in and set API keys locally."
+echo "Rime configuration is included and was redeployed when Squirrel was available."

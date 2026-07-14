@@ -1,6 +1,6 @@
 # macOS + AI dotfiles
 
-这套配置用于恢复 macOS 终端、开发工具和个人 AI 工具工作流，重点覆盖 Codex、Claude Code、共享 Agents Skills、VS Code/Cursor、Homebrew 与 iTerm2。
+这套配置用于恢复 macOS 终端、开发工具、Rime 输入法和个人 AI 工具工作流，重点覆盖 Codex、Claude Code、共享 Agents Skills、VS Code/Cursor、Homebrew、iTerm2 与 Squirrel/Rime。
 
 ## 已备份内容
 
@@ -11,6 +11,7 @@
 - `editors/`：VS Code 与 Cursor 的设置、快捷键和 snippets。
 - `software/`：Homebrew Bundle 与编辑器扩展清单。
 - `developer/gh/config.yml`：GitHub CLI 的非认证设置。
+- `input-method/rime/`：当前完整可部署的 Rime/Squirrel 方案、皮肤、Lua、主词库和个人短语。
 
 ## 永远不备份
 
@@ -20,6 +21,7 @@
 - Codex/Claude 的 `auth.json`、`.env`、会话、历史、记忆、项目记录和粘贴缓存；
 - SQLite 状态库、日志、遥测、浏览器状态、虚拟环境、依赖缓存和安装 ID；
 - GitHub CLI 的 `hosts.yml` 和 SSH 私钥。
+- Rime 的安装 ID、用户词频数据库、同步目录和编译产物。
 
 配置里的 `__HOME__` 会在恢复时自动替换；`__SET_LOCALLY__`、`__GIT_NAME__`、`__GIT_EMAIL__` 必须在本机填写，不能提交真实值。
 
@@ -35,6 +37,8 @@ cd dotfiles
 ```
 
 恢复脚本会先把被覆盖的文件保存到 `~/.dotfiles-restore-backup/<时间戳>/`。它不会恢复认证状态；完成后需要重新登录 Codex、Claude Code 和 GitHub CLI，并在本机补充秘密值。iTerm2 设置恢复后需重启 iTerm2。
+
+Rime 的当前主词库与个人配置已经完整包含。新 Mac 可直接运行 `./scripts/restore-rime.sh`：脚本会安装 Squirrel、备份目标机已有 Rime 数据、恢复配置并重新部署。
 
 恢复软件与 VS Code 扩展：
 

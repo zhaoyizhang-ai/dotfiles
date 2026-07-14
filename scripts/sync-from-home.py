@@ -225,6 +225,12 @@ def write_inventory() -> None:
             ["brew", "bundle", "dump", "--file", str(software / "Brewfile"), "--force"],
             check=True,
         )
+        brewfile = software / "Brewfile"
+        squirrel_app = Path("/Library/Input Methods/Squirrel.app")
+        if squirrel_app.exists():
+            content = brewfile.read_text(encoding="utf-8")
+            if 'cask "squirrel-app"' not in content:
+                brewfile.write_text(content.rstrip() + '\ncask "squirrel-app"\n', encoding="utf-8")
 
     commands = {
         "vscode-extensions.txt": ["code", "--list-extensions"],
@@ -283,6 +289,23 @@ def main() -> None:
 
     gh_config = REPO / "developer" / "gh" / "config.yml"
     copy_file(HOME / ".config" / "gh" / "config.yml", gh_config)
+
+    # Rime/Squirrel: keep portable configuration, not learned phrases or runtime state.
+    rime_source = HOME / "Library" / "Rime"
+    rime_target = REPO / "input-method" / "rime"
+    reset_dir(rime_target)
+    rime_excluded = {"installation.yaml", "user.yaml"}
+    if rime_source.is_dir():
+        for source in rime_source.iterdir():
+            if source.name in rime_excluded:
+                continue
+            if source.is_file() and (
+                source.suffix in {".yaml", ".lua", ".md"}
+                or source.name in {"LICENSE", "custom_phrase.txt"}
+            ):
+                copy_file(source, rime_target / source.name)
+        for dirname in ("lua", "others", "cn_dicts", "en_dicts", "opencc"):
+            copy_dir(rime_source / dirname, rime_target / dirname)
 
     # Refresh iTerm preferences as XML so home paths can be parameterized.
     iterm_source = HOME / "Library" / "Preferences" / "com.googlecode.iterm2.plist"
