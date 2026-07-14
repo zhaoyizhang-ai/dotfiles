@@ -35,6 +35,17 @@ RULES = {
     ),
 }
 
+RIME_PHRASE_RULES = {
+    "email": re.compile(r"(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b"),
+    "phone": re.compile(r"(?<!\d)1[3-9]\d{9}(?!\d)"),
+    "id-card": re.compile(r"(?<!\d)\d{17}[0-9Xx](?!\d)"),
+    "bank-like-number": re.compile(r"(?<!\d)\d{16,19}(?!\d)"),
+    "sensitive-label": re.compile(
+        r"密码|口令|身份证|银行卡|住址|家庭地址|手机号|电话号码|API.?KEY|TOKEN|SECRET",
+        re.IGNORECASE,
+    ),
+}
+
 
 def tracked_files() -> list[Path]:
     result = subprocess.run(
@@ -50,12 +61,14 @@ def main() -> int:
     findings: list[tuple[str, int, str]] = []
     for path in tracked_files():
         relative = path.relative_to(REPO)
-        if relative.as_posix().startswith("input-method/rime/") and path.name in {
-            "installation.yaml",
-            "user.yaml",
-            "custom_phrase.txt",
-        }:
+        rime_path = relative.as_posix().startswith("input-method/rime/")
+        if rime_path and path.name in {"installation.yaml", "user.yaml"}:
             findings.append((str(relative), 0, "forbidden-rime-private-data"))
+            continue
+        if rime_path and (
+            any(part in {"build", "sync"} or part.endswith(".userdb") for part in relative.parts)
+        ):
+            findings.append((str(relative), 0, "forbidden-rime-runtime-data"))
             continue
         if "hooks/state" in relative.as_posix():
             findings.append((str(relative), 0, "forbidden-runtime-state"))
@@ -71,6 +84,10 @@ def main() -> int:
         except (OSError, UnicodeDecodeError):
             continue
         for line_number, line in enumerate(text.splitlines(), start=1):
+            if rime_path and path.name == "custom_phrase.txt":
+                for rule, pattern in RIME_PHRASE_RULES.items():
+                    if pattern.search(line):
+                        findings.append((str(relative), line_number, f"rime-phrase-{rule}"))
             for rule, pattern in RULES.items():
                 if pattern.search(line):
                     findings.append((str(relative), line_number, rule))
