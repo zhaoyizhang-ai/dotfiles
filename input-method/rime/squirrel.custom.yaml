@@ -6,9 +6,68 @@ patch:
 
 # 如果想要修改皮肤，直接更改 color_scheme 的值即可
   style:
-    color_scheme: mojave_dark
+    color_scheme: zhaoyi_latte
+    color_scheme_dark: zhaoyi_mocha
 
   preset_color_schemes:
+    zhaoyi_latte:
+      name: "Zhaoyi Latte"
+      author: "Zhaoyi Zhang"
+      horizontal: true
+      candidate_list_layout: linear
+      text_orientation: horizontal
+      inline_preedit: true
+      corner_radius: 8
+      hilited_corner_radius: 8
+      line_spacing: 10
+      border_height: 10
+      border_width: 10
+      candidate_spacing: 25
+      font_face: PingFangSC
+      font_point: 16
+      label_font_point: 13
+      back_color: 0xf5f1ef
+      border_color: 0xf5f1ef
+      text_color: 0x694f4c
+      label_color: 0x856f6c
+      candidate_text_color: 0x694f4c
+      comment_text_color: 0x856f6c
+      hilited_text_color: 0xffffff
+      hilited_back_color: 0xf5661e
+      hilited_candidate_back_color: 0xf5661e
+      hilited_candidate_text_color: 0xffffff
+      hilited_candidate_label_color: 0xffffff
+      hilited_comment_text_color: 0xffffff
+
+    zhaoyi_mocha:
+      name: "Zhaoyi Mocha"
+      author: "Zhaoyi Zhang"
+      horizontal: true
+      candidate_list_layout: linear
+      text_orientation: horizontal
+      inline_preedit: true
+      corner_radius: 8
+      hilited_corner_radius: 8
+      line_spacing: 10
+      border_height: 10
+      border_width: 10
+      candidate_spacing: 25
+      font_face: PingFangSC
+      font_point: 16
+      label_font_point: 13
+      back_color: 0x2e1e1e
+      border_color: 0x2e1e1e
+      text_color: 0xf4d6cd
+      label_color: 0xc8ada6
+      candidate_text_color: 0xf4d6cd
+      comment_text_color: 0xc8ada6
+      hilited_text_color: 0x2e1e1e
+      hilited_back_color: 0xfab489
+      hilited_candidate_back_color: 0xfab489
+      hilited_candidate_text_color: 0x2e1e1e
+      hilited_candidate_label_color: 0x2e1e1e
+      hilited_comment_text_color: 0x2e1e1e
+
     mac:
       author: "lamb"
       name: "lamb"
