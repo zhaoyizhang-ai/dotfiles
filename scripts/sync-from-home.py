@@ -99,6 +99,9 @@ def sanitize_toml(path: Path) -> None:
     lines = path.read_text(encoding="utf-8").splitlines()
     output: list[str] = []
     dropping_section = False
+    volatile_keys = {
+        "microphoneInputDeviceId",
+    }
     for line in lines:
         stripped = line.strip()
         if stripped.startswith("["):
@@ -108,6 +111,9 @@ def sanitize_toml(path: Path) -> None:
         if dropping_section:
             continue
         if stripped.startswith("last_updated"):
+            continue
+        key = stripped.split("=", 1)[0].strip() if "=" in stripped else ""
+        if key in volatile_keys:
             continue
         line = line.replace(str(HOME), "__HOME__")
         line = re.sub(
@@ -192,7 +198,6 @@ def export_rcmd_preferences(path: Path) -> None:
         "appSortReverse",
         "assignKeyTriggerKeys",
         "createMissingSpaces",
-        "dynamicAppKeyAssignments",
         "exposeKey",
         "fuzzySearch",
         "ignoredApps",
@@ -224,10 +229,14 @@ def export_rcmd_preferences(path: Path) -> None:
         "tabCycle",
         "window",
     )
+    runtime_keys = {
+        "dynamicAppKeyAssignments",
+        "focusedAppKeyAssignment",
+    }
     safe = {
         key: value
         for key, value in data.items()
-        if key in exact_keys or key.startswith(prefixes)
+        if key not in runtime_keys and (key in exact_keys or key.startswith(prefixes))
     }
 
     def clean(value):
@@ -293,6 +302,16 @@ def write_inventory() -> None:
             check=True,
         )
         brewfile = software / "Brewfile"
+        # HyperKey is installed by restore-caps-hyper-rcmd.sh from a pinned,
+        # checksummed release because the third-party Homebrew cask can lag the
+        # release asset checksum.
+        content = brewfile.read_text(encoding="utf-8")
+        content = "\n".join(
+            line
+            for line in content.splitlines()
+            if line not in {'tap "n0an/tap"', 'cask "n0an/tap/hyperkey-app"'}
+        )
+        brewfile.write_text(content.rstrip() + "\n", encoding="utf-8")
         squirrel_app = Path("/Library/Input Methods/Squirrel.app")
         if squirrel_app.exists():
             content = brewfile.read_text(encoding="utf-8")
@@ -364,6 +383,10 @@ def main() -> None:
 
     if Path("/Applications/rcmd.app").exists():
         export_rcmd_preferences(REPO / "macos" / "rcmd" / "preferences.plist")
+        copy_file(
+            HOME / ".config" / "rcmd" / "config.yaml",
+            REPO / "macos" / "rcmd" / "config.yaml",
+        )
 
     # Rime/Squirrel: keep portable configuration, not learned phrases or runtime state.
     rime_source = HOME / "Library" / "Rime"

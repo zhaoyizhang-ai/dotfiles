@@ -13,6 +13,8 @@
 - `developer/gh/config.yml`：GitHub CLI 的非认证设置。
 - `input-method/rime/`：当前完整可部署的 Rime/Squirrel 方案、皮肤、Lua、主词库和个人短语。
 - `macos/rcmd/`：rcmd 的窗口/App 快捷键、切换行为、搜索规则和 OSD 外观。
+- `macos/keyboard/`：Caps→F18→HyperKey→rcmd 的持久化方案，关闭大小写/输入法功能并固定切 App。
+- `RESTORE_FOR_AI.md`：给下一个 AI 的安全恢复顺序、禁止项和验收标准。
 
 ## 永远不备份
 
@@ -42,7 +44,7 @@ cd dotfiles
 
 Rime 的当前主词库与个人配置已经完整包含。新 Mac 可直接运行 `./scripts/restore-rime.sh`：脚本会安装 Squirrel、备份目标机已有 Rime 数据、恢复配置并重新部署。
 
-rcmd 可运行 `./scripts/restore-rcmd.sh` 单独恢复；脚本会保留目标机授权状态，只合并快捷键和窗口切换配置。macOS 辅助功能权限仍需在系统设置中手动授予。
+rcmd 可运行 `./scripts/restore-rcmd.sh` 单独恢复。完整的 Caps 快速切 App 方案运行 `./scripts/restore-caps-hyper-rcmd.sh`；脚本恢复 Caps→F18、HyperKey、rcmd YAML、登录持久化和正确启动顺序。macOS 辅助功能/输入监控权限仍需手动授予。
 
 恢复软件与 VS Code 扩展：
 

@@ -1,6 +1,10 @@
 [
   {
     "command": "globalDictationHold",
+    "key": null
+  },
+  {
+    "command": "globalDictationToggle",
     "key": "Command+M"
   }
 ]

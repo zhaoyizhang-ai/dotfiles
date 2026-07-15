@@ -79,12 +79,18 @@ def main() -> int:
                     "launchableApps",
                     "launchCount",
                     "searchQueryAppSelections",
+                    "dynamicAppKeyAssignments",
+                    "focusedAppKeyAssignment",
                     "accessibilityPermissionsGranted",
                     "accessibilityPermissionsNotified",
                 }
             }
             for key in sorted(forbidden_keys):
                 findings.append((str(relative), 0, f"forbidden-rcmd-key:{key}"))
+        if relative.as_posix() == "macos/rcmd/config.yaml":
+            text_config = path.read_text(encoding="utf-8", errors="replace")
+            if "Application Support/rcmd" in text_config or "Paddle-" in text_config:
+                findings.append((str(relative), 0, "forbidden-rcmd-runtime-data"))
         rime_path = relative.as_posix().startswith("input-method/rime/")
         if rime_path and path.name in {"installation.yaml", "user.yaml"}:
             findings.append((str(relative), 0, "forbidden-rime-private-data"))

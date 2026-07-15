@@ -1,6 +1,6 @@
 # rcmd
 
-`preferences.plist` 保存当前 rcmd 的稳定配置：App/窗口快捷键、切换行为、搜索规则和 OSD 外观。
+`config.yaml` 是当前 rcmd 的可读主配置，保存 App 快捷键、触发器和切换行为。`preferences.plist` 保留可公开的稳定偏好，用于兼容和恢复 OSD 外观等设置。
 
 ## 恢复
 
@@ -8,7 +8,15 @@
 ./scripts/restore-rcmd.sh
 ```
 
-脚本会在需要时通过 Homebrew 安装 rcmd，把目标机现有偏好备份到 `~/.dotfiles-restore-backup/<时间戳>/rcmd/`，然后只合并公开配置键并重新启动 rcmd。
+脚本会在需要时通过 Homebrew 安装 rcmd，把目标机现有 YAML 和偏好备份到 `~/.dotfiles-restore-backup/<时间戳>/rcmd/`，恢复 `config.yaml`，然后只合并公开偏好键并重新启动 rcmd。
+
+Caps 作为 HyperKey 并切 App 的完整恢复入口是：
+
+```bash
+./scripts/restore-caps-hyper-rcmd.sh
+```
+
+细节见 `macos/keyboard/README.md`。
 
 ## 不进入仓库
 

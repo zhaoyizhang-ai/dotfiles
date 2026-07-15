@@ -12,6 +12,9 @@
 		<string>{"app":{"identifier":"org.zotero.zotero","originalName":"Zotero","path":"\/Applications\/Zotero.app","switchCount":0,"useCount":0},"index":0,"key":"d","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.openai.codex","originalName":"ChatGPT","path":"\/Applications\/ChatGPT.app","switchCount":0,"useCount":0},"index":0,"key":"s","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"md.obsidian","originalName":"Obsidian","path":"\/Applications\/Obsidian.app","switchCount":0,"useCount":0},"index":0,"key":"g","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.apple.finder","originalName":"Finder","path":"\/System\/Library\/CoreServices\/Finder.app","switchCount":0,"useCount":0},"index":0,"key":"r","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.microsoft.VSCode","originalName":"Code","path":"\/Applications\/Visual Studio Code.app","switchCount":0,"useCount":0},"index":0,"key":"v","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.apple.Preview","originalName":"Preview","path":"\/System\/Applications\/Preview.app","switchCount":0,"useCount":0},"index":0,"key":"e","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 	</array>
 	<key>appSort</key>
 	<string>"name"</string>
@@ -30,12 +33,6 @@
 	</array>
 	<key>createMissingSpaces</key>
 	<true/>
-	<key>dynamicAppKeyAssignments</key>
-	<array>
-		<string>{"app":{"identifier":"com.openai.chat:49222","originalName":"ChatGPT Classic","path":"\/Applications\/ChatGPT Classic.app","switchCount":0,"useCount":1446},"index":0,"key":"c","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-		<string>{"app":{"identifier":"com.mistycloud.macosx:6284","originalName":"Misty","path":"\/Applications\/Misty.app","switchCount":0,"useCount":1700},"index":1,"key":"m","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-		<string>{"app":{"identifier":"com.microsoft.VSCode:613","originalName":"Visual Studio Code","path":"\/Applications\/Visual Studio Code.app","switchCount":0,"useCount":73},"index":2,"key":"v","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-	</array>
 	<key>enableAssignHotkey</key>
 	<true/>
 	<key>enableHideAndSettingsKeys</key>
@@ -45,7 +42,7 @@
 	<key>enableInstantSpaceSwitching</key>
 	<true/>
 	<key>enableStickySpaceSearch</key>
-	<true/>
+	<false/>
 	<key>enableTabCycle</key>
 	<true/>
 	<key>enableWindowCycleKey</key>
@@ -62,8 +59,6 @@
 	<string>"allWindows"</string>
 	<key>focusOnKeyUp</key>
 	<false/>
-	<key>focusedAppKeyAssignment</key>
-	<string>{"app":{"identifier":"com.openai.codex:54806","originalName":"ChatGPT","path":"\/Applications\/ChatGPT.app","switchCount":0,"useCount":1054},"index":0,"key":"c","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 	<key>fuzzySearch</key>
 	<false/>
 	<key>hideOnFocusTriggerKeys</key>
@@ -84,27 +79,24 @@
 	<key>ignoredKeys</key>
 	<array>
 		<string>c</string>
-		<string>l</string>
-		<string>m</string>
-		<string>o</string>
-		<string>h</string>
-		<string>u</string>
-		<string>p</string>
-		<string>a</string>
-		<string>z</string>
-		<string>k</string>
-		<string>r</string>
-		<string>y</string>
-		<string>j</string>
-		<string>v</string>
-		<string>b</string>
-		<string>n</string>
-		<string>w</string>
 		<string>q</string>
-		<string>e</string>
 		<string>t</string>
+		<string>h</string>
 		<string>i</string>
 		<string>x</string>
+		<string>z</string>
+		<string>k</string>
+		<string>b</string>
+		<string>a</string>
+		<string>o</string>
+		<string>w</string>
+		<string>u</string>
+		<string>l</string>
+		<string>y</string>
+		<string>n</string>
+		<string>m</string>
+		<string>j</string>
+		<string>p</string>
 	</array>
 	<key>minimizeKey</key>
 	<string>"minus"</string>
@@ -200,7 +192,10 @@
 	<string>"allWindows"</string>
 	<key>triggerKeys</key>
 	<array>
-		<string>13</string>
+		<string>3</string>
+		<string>2</string>
+		<string>1</string>
+		<string>0</string>
 	</array>
 	<key>whenAlreadyFocusedAction</key>
 	<string>4</string>

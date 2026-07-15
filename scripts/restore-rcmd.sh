@@ -3,8 +3,10 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SOURCE_PLIST="$REPO_DIR/macos/rcmd/preferences.plist"
+SOURCE_YAML="$REPO_DIR/macos/rcmd/config.yaml"
 DOMAIN="com.lowtechguys.rcmd"
 RCMD_APP="/Applications/rcmd.app"
+TARGET_YAML="$HOME/.config/rcmd/config.yaml"
 BACKUP_DIR="$HOME/.dotfiles-restore-backup/$(date +%Y%m%d-%H%M%S)/rcmd"
 TEMP_DIR="$(mktemp -d -t rcmd-restore)"
 CURRENT_PLIST="$TEMP_DIR/current.plist"
@@ -18,6 +20,11 @@ fi
 
 if [[ ! -f "$SOURCE_PLIST" ]]; then
   echo "Missing rcmd backup: $SOURCE_PLIST" >&2
+  exit 1
+fi
+
+if [[ ! -f "$SOURCE_YAML" ]]; then
+  echo "Missing rcmd YAML backup: $SOURCE_YAML" >&2
   exit 1
 fi
 
@@ -37,6 +44,13 @@ else
   python3 -c 'import plistlib,sys; plistlib.dump({}, open(sys.argv[1], "wb"))' "$CURRENT_PLIST"
 fi
 
+if [[ -f "$TARGET_YAML" ]]; then
+  mkdir -p "$BACKUP_DIR"
+  cp -p "$TARGET_YAML" "$BACKUP_DIR/config.yaml"
+fi
+mkdir -p "$(dirname "$TARGET_YAML")"
+sed "s#__HOME__#${HOME//\#/\\#}#g" "$SOURCE_YAML" > "$TARGET_YAML"
+
 python3 "$REPO_DIR/scripts/merge-rcmd-prefs.py" \
   --source "$SOURCE_PLIST" \
   --current "$CURRENT_PLIST" \
@@ -47,4 +61,4 @@ killall rcmd 2>/dev/null || true
 defaults import "$DOMAIN" "$MERGED_PLIST"
 open -a rcmd
 
-echo "rcmd shortcuts, switcher behavior and appearance restored successfully."
+echo "rcmd YAML, shortcuts, switcher behavior and appearance restored successfully."
