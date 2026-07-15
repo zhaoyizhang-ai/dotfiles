@@ -102,7 +102,9 @@ State the provenance of non-obvious results at first appearance. Keep empirical 
 
 ## Paper and artifact rules
 
-- Read the full primary PDF and any appendix needed by the user's questions.
+- Check the user's Zotero library before downloading a paper. If the requested paper already exists in Zotero, read that local copy and do not create a duplicate download.
+- When a local Zotero copy is unavailable and the official HTML contains the complete text needed for verification, prefer the official HTML over downloading another PDF. Download a PDF only when the paper is absent from Zotero and the PDF layout, figures, or appendix are necessary.
+- Read the full primary source and any appendix needed by the user's questions. Use the Zotero PDF when figures or layout matter; otherwise the official HTML is acceptable.
 - Explain the paper using its own definitions before outside comparisons.
 - Put evidence limits next to the claims they limit.
 - Use an original paper figure only when it answers a real question in the learning spine.

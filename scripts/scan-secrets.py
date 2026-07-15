@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import re
 import subprocess
+import plistlib
 from pathlib import Path
 
 
@@ -61,6 +62,35 @@ def main() -> int:
     findings: list[tuple[str, int, str]] = []
     for path in tracked_files():
         relative = path.relative_to(REPO)
+        if relative.as_posix() == "macos/rcmd/preferences.plist":
+            try:
+                preferences = plistlib.loads(path.read_bytes())
+            except Exception:
+                findings.append((str(relative), 0, "invalid-rcmd-plist"))
+                continue
+            forbidden_keys = {
+                key
+                for key in preferences
+                if key.startswith(("Paddle-", "SU", "NSWindow Frame"))
+                or key
+                in {
+                    "sentryUserID",
+                    "recentlyClosedWindows",
+                    "launchableApps",
+                    "launchCount",
+                    "searchQueryAppSelections",
+                    "dynamicAppKeyAssignments",
+                    "focusedAppKeyAssignment",
+                    "accessibilityPermissionsGranted",
+                    "accessibilityPermissionsNotified",
+                }
+            }
+            for key in sorted(forbidden_keys):
+                findings.append((str(relative), 0, f"forbidden-rcmd-key:{key}"))
+        if relative.as_posix() == "macos/rcmd/config.yaml":
+            text_config = path.read_text(encoding="utf-8", errors="replace")
+            if "Application Support/rcmd" in text_config or "Paddle-" in text_config:
+                findings.append((str(relative), 0, "forbidden-rcmd-runtime-data"))
         rime_path = relative.as_posix().startswith("input-method/rime/")
         if rime_path and path.name in {"installation.yaml", "user.yaml"}:
             findings.append((str(relative), 0, "forbidden-rime-private-data"))

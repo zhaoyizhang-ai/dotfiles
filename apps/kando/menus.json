@@ -1,0 +1,336 @@
+{
+  "version": "2.3.1",
+  "menus": [
+    {
+      "root": {
+        "type": "submenu",
+        "name": "AI 快捷话术",
+        "icon": "auto_awesome",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "type": "text",
+            "data": {
+              "text": "请使用 Obsidian 支持的 Markdown + LaTeX 公式格式：行内公式必须用单个美元符号包裹，例如 $E = mc^2$；独立公式必须用双美元符号包裹，例如 $$E = mc^2$$。不要使用 \\(…\\) 或 \\[…\\] 作为公式定界符。"
+            },
+            "name": "Obsidian 公式",
+            "icon": "function",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "W",
+            "angle": 0
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "请先给出结论，再说明最关键的依据。"
+            },
+            "name": "先说结论",
+            "icon": "flag",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "E",
+            "angle": 45
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "不要只给建议，请直接完成任务，并给我可以使用的结果。"
+            },
+            "name": "直接完成",
+            "icon": "rocket_launch",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "D",
+            "angle": 90
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "请检查是否存在遗漏、矛盾，或未经验证的假设。"
+            },
+            "name": "检查遗漏",
+            "icon": "fact_check",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "C",
+            "angle": 135
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "请把内容压缩得更简洁，但保留所有关键信息。"
+            },
+            "name": "更加简洁",
+            "icon": "compress",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "X",
+            "angle": 180
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "请用通俗中文解释，避免不必要的术语，并给一个具体例子。"
+            },
+            "name": "通俗解释",
+            "icon": "lightbulb",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "Z",
+            "angle": 225
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "请给我三个可行方案，说明各自取舍，并明确推荐一个。"
+            },
+            "name": "三个方案",
+            "icon": "account_tree",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "A",
+            "angle": 270
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "请继续推进，不必每一步都向我确认；只有遇到会显著影响结果的关键分歧时再问我。"
+            },
+            "name": "继续推进",
+            "icon": "forward",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "Q",
+            "angle": 315
+          }
+        ]
+      },
+      "shortcut": "Control+1",
+      "shortcutID": "quick-phrases-ai",
+      "centered": false,
+      "anchored": true,
+      "hoverMode": false,
+      "tags": [
+        "quick-phrases",
+        "ai"
+      ]
+    },
+    {
+      "root": {
+        "type": "submenu",
+        "name": "与上级沟通",
+        "icon": "supervisor_account",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "type": "text",
+            "data": {
+              "text": "收到，我马上处理，完成后同步您。"
+            },
+            "name": "收到处理",
+            "icon": "task_alt",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "W",
+            "angle": 0
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "好的，我先梳理一下，稍后给您一个明确回复。"
+            },
+            "name": "稍后回复",
+            "icon": "schedule",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "E",
+            "angle": 45
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "目前进展正常，预计今天内完成；如有变化我会及时同步您。"
+            },
+            "name": "汇报进展",
+            "icon": "trending_up",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "D",
+            "angle": 90
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "这个问题我已经定位，目前正在处理。"
+            },
+            "name": "正在处理",
+            "icon": "build_circle",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "C",
+            "angle": 135
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "我理解您的重点是……，我会按这个方向推进。"
+            },
+            "name": "确认理解",
+            "icon": "checklist",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "X",
+            "angle": 180
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "这里有两个可行方案，我更建议……，主要原因是……"
+            },
+            "name": "推荐方案",
+            "icon": "recommend",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "Z",
+            "angle": 225
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "这部分还需要向您确认一个信息：……"
+            },
+            "name": "请求确认",
+            "icon": "help",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "A",
+            "angle": 270
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "已经完成，请您有空时看一下；如需调整，我马上修改。"
+            },
+            "name": "已经完成",
+            "icon": "done_all",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "Q",
+            "angle": 315
+          }
+        ]
+      },
+      "shortcut": "Control+2",
+      "shortcutID": "quick-phrases-manager",
+      "centered": false,
+      "anchored": true,
+      "hoverMode": false,
+      "tags": [
+        "quick-phrases",
+        "manager"
+      ]
+    },
+    {
+      "root": {
+        "type": "submenu",
+        "name": "与同级沟通",
+        "icon": "groups",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "type": "text",
+            "data": {
+              "text": "收到，我来跟进。"
+            },
+            "name": "我来跟进",
+            "icon": "follow_the_signs",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "W",
+            "angle": 0
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "没问题，我们就按这个方案推进。"
+            },
+            "name": "按此推进",
+            "icon": "play_arrow",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "E",
+            "angle": 45
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "我先看一下，晚点回复你。"
+            },
+            "name": "稍后回复",
+            "icon": "schedule",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "D",
+            "angle": 90
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "这部分我已经处理好了，你可以继续往下走。"
+            },
+            "name": "已经处理",
+            "icon": "check_circle",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "C",
+            "angle": 135
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "方便的话，帮我确认一下这部分。"
+            },
+            "name": "帮忙确认",
+            "icon": "visibility",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "X",
+            "angle": 180
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "我们对一下理解：……"
+            },
+            "name": "对齐理解",
+            "icon": "sync_alt",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "Z",
+            "angle": 225
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "这里可能有一个风险，建议我们先……"
+            },
+            "name": "提示风险",
+            "icon": "warning",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "A",
+            "angle": 270
+          },
+          {
+            "type": "text",
+            "data": {
+              "text": "辛苦了，谢谢！"
+            },
+            "name": "表示感谢",
+            "icon": "favorite",
+            "iconTheme": "material-symbols-rounded",
+            "quickSelectKey": "Q",
+            "angle": 315
+          }
+        ]
+      },
+      "shortcut": "Control+3",
+      "shortcutID": "quick-phrases-peer",
+      "centered": false,
+      "anchored": true,
+      "hoverMode": false,
+      "tags": [
+        "quick-phrases",
+        "peer"
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "name": "快捷话术",
+      "icon": "chat",
+      "iconTheme": "material-symbols-rounded",
+      "tags": [
+        "quick-phrases"
+      ]
+    }
+  ]
+}

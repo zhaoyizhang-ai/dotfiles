@@ -7,6 +7,7 @@ import json
 import os
 import plistlib
 import re
+import shlex
 import shutil
 import subprocess
 from pathlib import Path
@@ -99,6 +100,9 @@ def sanitize_toml(path: Path) -> None:
     lines = path.read_text(encoding="utf-8").splitlines()
     output: list[str] = []
     dropping_section = False
+    volatile_keys = {
+        "microphoneInputDeviceId",
+    }
     for line in lines:
         stripped = line.strip()
         if stripped.startswith("["):
@@ -108,6 +112,9 @@ def sanitize_toml(path: Path) -> None:
         if dropping_section:
             continue
         if stripped.startswith("last_updated"):
+            continue
+        key = stripped.split("=", 1)[0].strip() if "=" in stripped else ""
+        if key in volatile_keys:
             continue
         line = line.replace(str(HOME), "__HOME__")
         line = re.sub(
@@ -177,6 +184,76 @@ def sanitize_iterm(path: Path) -> None:
         plistlib.dump(clean(data), stream, fmt=plistlib.FMT_XML, sort_keys=False)
 
 
+def export_rcmd_preferences(path: Path) -> None:
+    result = subprocess.run(
+        ["defaults", "export", "com.lowtechguys.rcmd", "-"],
+        check=True,
+        capture_output=True,
+    )
+    data = plistlib.loads(result.stdout)
+    exact_keys = {
+        "activationMode",
+        "alwaysHideOthers",
+        "appKeyAssignments",
+        "appSort",
+        "appSortReverse",
+        "assignKeyTriggerKeys",
+        "createMissingSpaces",
+        "exposeKey",
+        "fuzzySearch",
+        "ignoredApps",
+        "ignoredKeys",
+        "minimizeKey",
+        "minimizeOnlyFocusedWindowOnMinus",
+        "osdCurrentSpaceOnly",
+        "osdLook",
+        "overrideUserDefaults",
+        "pauseApps",
+        "searchMatchMode",
+        "searchOptionalPrefixes",
+        "searchQueryPins",
+        "spaceMode",
+        "specialKey",
+        "triggerKeys",
+        "whenAlreadyFocusedAction",
+    }
+    prefixes = (
+        "appSwitcher",
+        "enable",
+        "focus",
+        "hide",
+        "hijack",
+        "show",
+        "stage",
+        "sticky",
+        "switcher",
+        "tabCycle",
+        "window",
+    )
+    runtime_keys = {
+        "dynamicAppKeyAssignments",
+        "focusedAppKeyAssignment",
+    }
+    safe = {
+        key: value
+        for key, value in data.items()
+        if key not in runtime_keys and (key in exact_keys or key.startswith(prefixes))
+    }
+
+    def clean(value):
+        if isinstance(value, dict):
+            return {key: clean(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [clean(item) for item in value]
+        if isinstance(value, str):
+            return value.replace(str(HOME), "__HOME__")
+        return value
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("wb") as stream:
+        plistlib.dump(clean(safe), stream, fmt=plistlib.FMT_XML, sort_keys=True)
+
+
 def sanitize_text(path: Path) -> None:
     try:
         raw = path.read_bytes()
@@ -226,11 +303,32 @@ def write_inventory() -> None:
             check=True,
         )
         brewfile = software / "Brewfile"
-        squirrel_app = Path("/Library/Input Methods/Squirrel.app")
-        if squirrel_app.exists():
-            content = brewfile.read_text(encoding="utf-8")
-            if 'cask "squirrel-app"' not in content:
-                brewfile.write_text(content.rstrip() + '\ncask "squirrel-app"\n', encoding="utf-8")
+        # HyperKey is installed by restore-caps-hyper-rcmd.sh from a pinned,
+        # checksummed release because the third-party Homebrew cask can lag the
+        # release asset checksum.
+        content = brewfile.read_text(encoding="utf-8")
+        content = "\n".join(
+            line
+            for line in content.splitlines()
+            if line not in {'tap "n0an/tap"', 'cask "n0an/tap/hyperkey-app"'}
+        )
+        brewfile.write_text(content.rstrip() + "\n", encoding="utf-8")
+        portable_apps = {
+            Path("/Library/Input Methods/Squirrel.app"): "squirrel-app",
+            Path("/Applications/rcmd.app"): "rcmd",
+            Path("/Applications/Google Chrome.app"): "google-chrome",
+            Path("/Applications/Zotero.app"): "zotero",
+            Path("/Applications/Obsidian.app"): "obsidian",
+            Path("/Applications/Visual Studio Code.app"): "visual-studio-code",
+            Path("/Applications/ChatGPT.app"): "chatgpt",
+            Path("/Applications/DockDoor.app"): "dockdoor",
+        }
+        content = brewfile.read_text(encoding="utf-8")
+        for app_path, cask in portable_apps.items():
+            line = f'cask "{cask}"'
+            if app_path.exists() and line not in content:
+                content = content.rstrip() + f"\n{line}\n"
+        brewfile.write_text(content.rstrip() + "\n", encoding="utf-8")
 
     commands = {
         "vscode-extensions.txt": ["code", "--list-extensions"],
@@ -241,6 +339,121 @@ def write_inventory() -> None:
             continue
         result = subprocess.run(command, check=True, capture_output=True, text=True)
         (software / filename).write_text(result.stdout, encoding="utf-8")
+
+
+MACOS_DEFAULTS = (
+    ("NSGlobalDomain", "AppleKeyboardUIMode", "int"),
+    ("NSGlobalDomain", "AppleShowAllExtensions", "bool"),
+    ("NSGlobalDomain", "AppleWindowTabbingMode", "string"),
+    ("NSGlobalDomain", "AppleActionOnDoubleClick", "string"),
+    ("NSGlobalDomain", "NSAutomaticCapitalizationEnabled", "bool"),
+    ("NSGlobalDomain", "NSAutomaticPeriodSubstitutionEnabled", "bool"),
+    ("NSGlobalDomain", "com.apple.trackpad.forceClick", "bool"),
+    ("NSGlobalDomain", "com.apple.trackpad.scaling", "float"),
+    ("com.apple.dock", "autohide", "bool"),
+    ("com.apple.dock", "magnification", "bool"),
+    ("com.apple.dock", "minimize-to-application", "bool"),
+    ("com.apple.dock", "orientation", "string"),
+    ("com.apple.dock", "show-recents", "bool"),
+    ("com.apple.dock", "tilesize", "float"),
+    ("com.apple.dock", "largesize", "float"),
+    ("com.apple.dock", "wvous-tl-corner", "int"),
+    ("com.apple.dock", "wvous-tr-corner", "int"),
+    ("com.apple.dock", "wvous-bl-corner", "int"),
+    ("com.apple.dock", "wvous-br-corner", "int"),
+    ("com.apple.finder", "FXPreferredViewStyle", "string"),
+    ("com.apple.finder", "FXDefaultSearchScope", "string"),
+    ("com.apple.finder", "ShowPathbar", "bool"),
+    ("com.apple.finder", "ShowPreviewPane", "bool"),
+    ("com.apple.finder", "ShowSidebar", "bool"),
+    ("com.apple.finder", "_FXSortFoldersFirst", "bool"),
+    ("com.apple.finder", "_FXSortFoldersFirstOnDesktop", "bool"),
+    ("com.apple.screencapture", "style", "string"),
+    ("com.lihaoyun6.QuickRecorder", "frameRate", "int"),
+    ("com.lihaoyun6.QuickRecorder", "recordHDR", "bool"),
+    ("com.lihaoyun6.QuickRecorder", "recordMic", "bool"),
+    ("com.ethanbills.DockDoor", "compactModeItemSize", "int"),
+    ("com.ethanbills.DockDoor", "compactModeTitleFormat", "string"),
+    ("com.ethanbills.DockDoor", "disableImagePreview", "bool"),
+    ("com.ethanbills.DockDoor", "globalPaddingMultiplier", "float"),
+    ("com.ethanbills.DockDoor", "previewHeight", "float"),
+    ("com.ethanbills.DockDoor", "previewWidth", "float"),
+    ("com.ethanbills.DockDoor", "uniformCardRadius", "float"),
+    ("com.ethanbills.DockDoor", "windowPreviewSortOrder", "string"),
+)
+
+
+def export_macos_preferences() -> None:
+    target = REPO / "macos" / "preferences"
+    target.mkdir(parents=True, exist_ok=True)
+    domains: list[str] = []
+    lines = [
+        "#!/usr/bin/env bash",
+        "set -euo pipefail",
+        "",
+        'BACKUP_DIR="${HOME}/.dotfiles-restore-backup/$(date +%Y%m%d-%H%M%S)/macos-preferences"',
+        'mkdir -p "$BACKUP_DIR"',
+        "",
+    ]
+
+    for domain, key, value_type in MACOS_DEFAULTS:
+        result = subprocess.run(
+            ["defaults", "read", domain, key],
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            continue
+        if domain not in domains:
+            domains.append(domain)
+        value = result.stdout.strip()
+        if value_type == "bool":
+            value = "true" if value not in {"0", "false", "False", "NO"} else "false"
+        lines.append(
+            f"defaults write {shlex.quote(domain)} {shlex.quote(key)} "
+            f"-{value_type} {shlex.quote(value)}"
+        )
+
+    backup_lines: list[str] = []
+    for domain in domains:
+        if domain == "NSGlobalDomain":
+            backup_lines.append(
+                'cp -p "$HOME/Library/Preferences/.GlobalPreferences.plist" '
+                '"$BACKUP_DIR/NSGlobalDomain.plist" 2>/dev/null || true'
+            )
+        else:
+            backup_lines.append(
+                f'defaults export {shlex.quote(domain)} "$BACKUP_DIR/{domain}.plist" '
+                ">/dev/null 2>&1 || true"
+            )
+    lines[6:6] = backup_lines + [""]
+    lines.extend(
+        [
+            "",
+            'if [[ -f "$(dirname "$0")/symbolic-hotkeys.plist" ]]; then',
+            '  defaults export com.apple.symbolichotkeys "$BACKUP_DIR/com.apple.symbolichotkeys.plist" >/dev/null 2>&1 || true',
+            '  defaults import com.apple.symbolichotkeys "$(dirname "$0")/symbolic-hotkeys.plist"',
+            "fi",
+            "",
+            "killall Dock >/dev/null 2>&1 || true",
+            "killall Finder >/dev/null 2>&1 || true",
+            'echo "macOS preferences restored; previous domains were exported to: $BACKUP_DIR"',
+            "",
+        ]
+    )
+    restore = target / "restore.sh"
+    restore.write_text("\n".join(lines), encoding="utf-8")
+    restore.chmod(0o755)
+
+    result = subprocess.run(
+        ["defaults", "export", "com.apple.symbolichotkeys", "-"],
+        check=True,
+        capture_output=True,
+    )
+    data = plistlib.loads(result.stdout)
+    data = {"AppleSymbolicHotKeys": data.get("AppleSymbolicHotKeys", {})}
+    with (target / "symbolic-hotkeys.plist").open("wb") as stream:
+        plistlib.dump(data, stream, fmt=plistlib.FMT_XML, sort_keys=True)
 
 
 def main() -> None:
@@ -290,6 +503,22 @@ def main() -> None:
     gh_config = REPO / "developer" / "gh" / "config.yml"
     copy_file(HOME / ".config" / "gh" / "config.yml", gh_config)
 
+    # Kando: portable menu/gesture definitions only, never Electron session data.
+    kando_source = HOME / "Library" / "Application Support" / "kando"
+    kando_target = REPO / "apps" / "kando"
+    reset_dir(kando_target)
+    for filename in ("config.json", "menus.json"):
+        copy_file(kando_source / filename, kando_target / filename)
+        if (kando_target / filename).is_file():
+            sanitize_json(kando_target / filename)
+
+    if Path("/Applications/rcmd.app").exists():
+        export_rcmd_preferences(REPO / "macos" / "rcmd" / "preferences.plist")
+        copy_file(
+            HOME / ".config" / "rcmd" / "config.yaml",
+            REPO / "macos" / "rcmd" / "config.yaml",
+        )
+
     # Rime/Squirrel: keep portable configuration, not learned phrases or runtime state.
     rime_source = HOME / "Library" / "Rime"
     rime_target = REPO / "input-method" / "rime"
@@ -327,6 +556,8 @@ def main() -> None:
             sanitize_json(json_path)
     if (REPO / ".gitconfig").is_file():
         sanitize_gitconfig(REPO / ".gitconfig")
+
+    export_macos_preferences()
 
     for path in REPO.rglob("*"):
         if path.is_file() and ".git" not in path.parts:
