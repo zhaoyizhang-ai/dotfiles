@@ -8,12 +8,13 @@ appKeyAssignments:
   s: {app: /Applications/ChatGPT.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   g: {app: /Applications/Obsidian.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   v: {app: /Applications/Visual Studio Code.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
-  e: {app: /Applications/Safari.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  r: {app: /Applications/Safari.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   b: {app: /System/Applications/Notes.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
 windowKeyAssignments: {}
 ignoredApps: []
 appsWhereRcmdIsPaused: []
 ignoredKeys:
+- e
 - o
 - w
 - a
