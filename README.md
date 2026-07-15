@@ -14,7 +14,10 @@
 - `input-method/rime/`：当前完整可部署的 Rime/Squirrel 方案、皮肤、Lua、主词库和个人短语。
 - `macos/rcmd/`：rcmd 的窗口/App 快捷键、切换行为、搜索规则和 OSD 外观。
 - `macos/keyboard/`：Caps→F18→HyperKey→rcmd 的持久化方案，关闭大小写/输入法功能并固定切 App。
+- `macos/preferences/`：白名单化的键盘、Dock、Finder、截图、DockDoor、QuickRecorder 与系统快捷键偏好。
+- `apps/kando/`：Kando 的菜单、手势和外观配置，不含 Electron 会话与 Cookie。
 - `RESTORE_FOR_AI.md`：给下一个 AI 的安全恢复顺序、禁止项和验收标准。
+- `CONFIG_INVENTORY.md`：本机配置盘点、已备份范围与明确排除项。
 
 ## 永远不备份
 
@@ -26,6 +29,7 @@
 - GitHub CLI 的 `hosts.yml` 和 SSH 私钥。
 - Rime 的安装 ID、用户词频数据库、同步目录和编译产物。
 - rcmd 的 Paddle 授权、Sentry ID、窗口历史、应用扫描清单和权限状态。
+- Safari 历史/书签/Cookie、备忘录正文、Deck/Typeless 内容库、Bartender 许可证和任何 App 会话数据。
 
 配置里的 `__HOME__` 会在恢复时自动替换；`__SET_LOCALLY__`、`__GIT_NAME__`、`__GIT_EMAIL__` 必须在本机填写，不能提交真实值。
 
@@ -52,6 +56,8 @@ rcmd 可运行 `./scripts/restore-rcmd.sh` 单独恢复。完整的 Caps 快速�
 brew bundle --file software/Brewfile
 xargs -L 1 code --install-extension < software/vscode-extensions.txt
 ```
+
+Homebrew 清单会显式补入当前 Caps 映射依赖的 Chrome、Zotero、Obsidian、VS Code、ChatGPT，以及已备份偏好的 DockDoor；Safari 和备忘录由 macOS 自带。
 
 ## 更新备份
 

@@ -12,9 +12,9 @@
 		<string>{"app":{"identifier":"org.zotero.zotero","originalName":"Zotero","path":"\/Applications\/Zotero.app","switchCount":0,"useCount":0},"index":0,"key":"d","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.openai.codex","originalName":"ChatGPT","path":"\/Applications\/ChatGPT.app","switchCount":0,"useCount":0},"index":0,"key":"s","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"md.obsidian","originalName":"Obsidian","path":"\/Applications\/Obsidian.app","switchCount":0,"useCount":0},"index":0,"key":"g","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-		<string>{"app":{"identifier":"com.apple.finder","originalName":"Finder","path":"\/System\/Library\/CoreServices\/Finder.app","switchCount":0,"useCount":0},"index":0,"key":"r","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.microsoft.VSCode","originalName":"Code","path":"\/Applications\/Visual Studio Code.app","switchCount":0,"useCount":0},"index":0,"key":"v","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-		<string>{"app":{"identifier":"com.apple.Preview","originalName":"Preview","path":"\/System\/Applications\/Preview.app","switchCount":0,"useCount":0},"index":0,"key":"e","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.apple.Safari","originalName":"Safari","path":"\/Applications\/Safari.app","switchCount":0,"useCount":0},"index":0,"key":"e","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.apple.Notes","originalName":"Notes","path":"\/System\/Applications\/Notes.app","switchCount":0,"useCount":0},"index":0,"key":"b","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 	</array>
 	<key>appSort</key>
 	<string>"name"</string>
@@ -78,25 +78,24 @@
 	<array/>
 	<key>ignoredKeys</key>
 	<array>
-		<string>c</string>
 		<string>q</string>
-		<string>t</string>
-		<string>h</string>
-		<string>i</string>
-		<string>x</string>
-		<string>z</string>
-		<string>k</string>
-		<string>b</string>
-		<string>a</string>
-		<string>o</string>
-		<string>w</string>
-		<string>u</string>
-		<string>l</string>
 		<string>y</string>
+		<string>a</string>
+		<string>p</string>
+		<string>z</string>
+		<string>u</string>
+		<string>k</string>
+		<string>h</string>
+		<string>o</string>
+		<string>i</string>
 		<string>n</string>
+		<string>t</string>
+		<string>l</string>
+		<string>w</string>
+		<string>x</string>
 		<string>m</string>
 		<string>j</string>
-		<string>p</string>
+		<string>c</string>
 	</array>
 	<key>minimizeKey</key>
 	<string>"minus"</string>

@@ -28,6 +28,7 @@ brew bundle --file software/Brewfile
 - Codex、Claude Code、共享 Agents Skills；
 - Rime/Squirrel 输入方案；
 - Caps→HyperKey→rcmd 固定 App 切换。
+- Kando 菜单，以及白名单化的 macOS、Finder、Dock、DockDoor 和 QuickRecorder 偏好。
 
 恢复后由用户在本机重新登录 Codex、Claude、GitHub CLI，并设置秘密值。不要要求用户把秘密提交到本仓库。
 
@@ -50,6 +51,7 @@ brew bundle --file software/Brewfile
 
 - 单按 Caps：无灯、无大小写、无输入法切换；
 - Caps+F：Chrome；Caps+D：Zotero；
+- Caps+E：Safari；Caps+B：备忘录；Caps+R：无绑定；
 - 其他绑定以 `macos/rcmd/config.yaml` 为准。
 
 ## 更新备份

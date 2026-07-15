@@ -18,6 +18,20 @@ Caps 作为 HyperKey 并切 App 的完整恢复入口是：
 
 细节见 `macos/keyboard/README.md`。
 
+## 当前固定映射
+
+| 按键 | App |
+| --- | --- |
+| Caps+F | Google Chrome |
+| Caps+D | Zotero |
+| Caps+S | ChatGPT / Codex |
+| Caps+G | Obsidian |
+| Caps+V | Visual Studio Code |
+| Caps+E | Safari |
+| Caps+B | 备忘录 |
+
+`Caps+R` 没有绑定，预览也不再占用 `Caps+E`。
+
 ## 不进入仓库
 
 - Paddle 授权数据及 `Application Support/rcmd`；
