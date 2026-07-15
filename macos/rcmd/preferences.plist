@@ -13,7 +13,8 @@
 		<string>{"app":{"identifier":"com.openai.codex","originalName":"ChatGPT","path":"\/Applications\/ChatGPT.app","switchCount":0,"useCount":0},"index":0,"key":"s","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"md.obsidian","originalName":"Obsidian","path":"\/Applications\/Obsidian.app","switchCount":0,"useCount":0},"index":0,"key":"g","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.microsoft.VSCode","originalName":"Code","path":"\/Applications\/Visual Studio Code.app","switchCount":0,"useCount":0},"index":0,"key":"v","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-		<string>{"app":{"identifier":"com.apple.Safari","originalName":"Safari","path":"\/Applications\/Safari.app","switchCount":0,"useCount":0},"index":0,"key":"r","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.apple.Safari","originalName":"Safari","path":"\/Applications\/Safari.app","switchCount":0,"useCount":0},"index":0,"key":"e","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.apple.finder","originalName":"Finder","path":"\/System\/Library\/CoreServices\/Finder.app","switchCount":0,"useCount":0},"index":0,"key":"r","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.apple.Notes","originalName":"Notes","path":"\/System\/Applications\/Notes.app","switchCount":0,"useCount":0},"index":0,"key":"b","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 	</array>
 	<key>appSort</key>
@@ -78,25 +79,24 @@
 	<array/>
 	<key>ignoredKeys</key>
 	<array>
-		<string>q</string>
-		<string>x</string>
-		<string>e</string>
+		<string>h</string>
 		<string>z</string>
 		<string>l</string>
-		<string>u</string>
-		<string>o</string>
-		<string>j</string>
-		<string>m</string>
-		<string>y</string>
-		<string>c</string>
 		<string>a</string>
-		<string>n</string>
-		<string>h</string>
-		<string>k</string>
+		<string>y</string>
+		<string>m</string>
+		<string>x</string>
+		<string>q</string>
+		<string>j</string>
 		<string>p</string>
-		<string>w</string>
-		<string>i</string>
+		<string>o</string>
 		<string>t</string>
+		<string>u</string>
+		<string>c</string>
+		<string>w</string>
+		<string>n</string>
+		<string>i</string>
+		<string>k</string>
 	</array>
 	<key>minimizeKey</key>
 	<string>"minus"</string>

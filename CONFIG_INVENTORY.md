@@ -25,10 +25,11 @@
 | Caps+S | ChatGPT / Codex |
 | Caps+G | Obsidian |
 | Caps+V | Visual Studio Code |
-| Caps+R | Safari |
+| Caps+E | Safari |
+| Caps+R | Finder |
 | Caps+B | 备忘录 |
 
-`Caps+E` 已取消，预览也不再占用该按键。
+预览不再占用 `Caps+E`。
 
 ## 明确不上传
 
