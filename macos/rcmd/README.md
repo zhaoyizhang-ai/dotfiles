@@ -27,10 +27,11 @@ Caps 作为 HyperKey 并切 App 的完整恢复入口是：
 | Caps+S | ChatGPT / Codex |
 | Caps+G | Obsidian |
 | Caps+V | Visual Studio Code |
-| Caps+R | Safari |
+| Caps+E | Safari |
+| Caps+R | Finder |
 | Caps+B | 备忘录 |
 
-`Caps+E` 没有绑定，预览也不再占用该按键。
+预览不再占用 `Caps+E`。
 
 ## 不进入仓库
 

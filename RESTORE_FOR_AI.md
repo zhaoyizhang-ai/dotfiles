@@ -51,7 +51,7 @@ brew bundle --file software/Brewfile
 
 - 单按 Caps：无灯、无大小写、无输入法切换；
 - Caps+F：Chrome；Caps+D：Zotero；
-- Caps+R：Safari；Caps+B：备忘录；Caps+E：无绑定；
+- Caps+E：Safari；Caps+R：Finder；Caps+B：备忘录；
 - 其他绑定以 `macos/rcmd/config.yaml` 为准。
 
 ## 更新备份
