@@ -10,11 +10,12 @@ appKeyAssignments:
   v: {app: /Applications/Visual Studio Code.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   e: {app: /Applications/Safari.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   r: {app: /System/Library/CoreServices/Finder.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
-  b: {app: /System/Applications/Notes.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  c: {app: /System/Applications/Notes.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
 windowKeyAssignments: {}
 ignoredApps: []
 appsWhereRcmdIsPaused: []
 ignoredKeys:
+- b
 - o
 - w
 - a
@@ -30,7 +31,6 @@ ignoredKeys:
 - k
 - h
 - l
-- c
 - t
 - q
 searchPins: {}
