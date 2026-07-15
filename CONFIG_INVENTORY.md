@@ -27,7 +27,7 @@
 | Caps+V | Visual Studio Code |
 | Caps+E | Safari |
 | Caps+R | Finder |
-| Caps+B | 备忘录 |
+| Caps+C | 备忘录 |
 
 预览不再占用 `Caps+E`。
 

@@ -15,7 +15,7 @@
 		<string>{"app":{"identifier":"com.microsoft.VSCode","originalName":"Code","path":"\/Applications\/Visual Studio Code.app","switchCount":0,"useCount":0},"index":0,"key":"v","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.apple.Safari","originalName":"Safari","path":"\/Applications\/Safari.app","switchCount":0,"useCount":0},"index":0,"key":"e","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.apple.finder","originalName":"Finder","path":"\/System\/Library\/CoreServices\/Finder.app","switchCount":0,"useCount":0},"index":0,"key":"r","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-		<string>{"app":{"identifier":"com.apple.Notes","originalName":"Notes","path":"\/System\/Applications\/Notes.app","switchCount":0,"useCount":0},"index":0,"key":"b","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"com.apple.Notes","originalName":"Notes","path":"\/System\/Applications\/Notes.app","switchCount":0,"useCount":0},"index":0,"key":"c","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 	</array>
 	<key>appSort</key>
 	<string>"name"</string>
@@ -79,24 +79,24 @@
 	<array/>
 	<key>ignoredKeys</key>
 	<array>
-		<string>h</string>
 		<string>z</string>
-		<string>l</string>
-		<string>a</string>
+		<string>w</string>
+		<string>j</string>
+		<string>k</string>
 		<string>y</string>
+		<string>q</string>
+		<string>a</string>
+		<string>u</string>
+		<string>l</string>
+		<string>n</string>
+		<string>h</string>
+		<string>b</string>
+		<string>i</string>
+		<string>o</string>
+		<string>p</string>
 		<string>m</string>
 		<string>x</string>
-		<string>q</string>
-		<string>j</string>
-		<string>p</string>
-		<string>o</string>
 		<string>t</string>
-		<string>u</string>
-		<string>c</string>
-		<string>w</string>
-		<string>n</string>
-		<string>i</string>
-		<string>k</string>
 	</array>
 	<key>minimizeKey</key>
 	<string>"minus"</string>

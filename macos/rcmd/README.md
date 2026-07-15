@@ -29,7 +29,7 @@ Caps 作为 HyperKey 并切 App 的完整恢复入口是：
 | Caps+V | Visual Studio Code |
 | Caps+E | Safari |
 | Caps+R | Finder |
-| Caps+B | 备忘录 |
+| Caps+C | 备忘录 |
 
 预览不再占用 `Caps+E`。
 
