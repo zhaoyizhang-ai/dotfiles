@@ -11,28 +11,28 @@ appKeyAssignments:
   e: {app: /Applications/Safari.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   r: {app: /System/Library/CoreServices/Finder.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   c: {app: /System/Applications/Notes.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  w: {app: /System/Applications/Preview.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  m: {app: /System/Applications/Music.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  t: {app: /Applications/iTerm.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  p: {app: /Applications/Microsoft PowerPoint.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
 windowKeyAssignments: {}
 ignoredApps: []
 appsWhereRcmdIsPaused: []
 ignoredKeys:
-- b
-- o
-- w
 - a
-- j
-- z
-- i
-- m
-- y
-- x
-- u
-- p
-- n
-- k
-- h
 - l
-- t
+- z
 - q
+- x
+- j
+- b
+- k
+- o
+- u
+- h
+- n
+- y
+- i
 searchPins: {}
 triggers:
   triggerKeys: [lcmd, lalt, lctrl, lshift]
