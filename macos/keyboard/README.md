@@ -7,7 +7,7 @@
 1. macOS `hidutil` 把系统看到的 Caps Lock 映射成无害的 `F18`。
 2. HyperKey 从原始 HID 键盘事件读取物理 Caps，并生成左侧 `Cmd+Option+Control+Shift`。
 3. rcmd 使用 `[lcmd, lalt, lctrl, lshift]` 作为 App 切换触发器。
-4. 登录脚本固定按 `rcmd -> 等待 2 秒 -> HyperKey` 的顺序启动。这个顺序让 HyperKey 先于 rcmd 截掉原始 Caps 事件。
+4. 登录脚本固定按 `rcmd -> 等待 2 秒 -> HyperKey` 的顺序启动。
 
 `hidutil` 映射本身在重启后会消失，所以由 `com.az.caps-hyper-rcmd` LaunchAgent 在每次登录时重新应用。它是一个很小的系统脚本，不是第三个常驻 App。
 
@@ -21,7 +21,11 @@
 | Caps+G | Obsidian |
 | Caps+R | Finder |
 | Caps+V | Visual Studio Code |
-| Caps+E | Preview |
+| Caps+E | Safari |
+| Caps+W | Preview |
+| Caps+M | Music |
+| Caps+T | iTerm2 |
+| Caps+P | PowerPoint |
 
 完整映射在 `macos/rcmd/config.yaml`。
 
@@ -37,6 +41,7 @@
 - 从官方 GitHub Release 安装固定版本、固定 SHA256 且通过 Apple 公证检查的 HyperKey；
 - 恢复 rcmd YAML 与公开偏好；
 - 安装登录脚本并立即应用 Caps→F18 映射；
+- 安装 `~/.local/bin/rcmd-restart` 快速重启命令；
 - 按已验证的顺序重启 rcmd 和 HyperKey。
 
 随后必须在“系统设置 → 隐私与安全性”手动授权：
@@ -50,6 +55,12 @@
 ~/.local/bin/caps-hyper-rcmd
 ```
 
+日常快速重启：
+
+```bash
+~/.local/bin/rcmd-restart
+```
+
 ## 验证
 
 ```bash
@@ -57,7 +68,7 @@ hidutil property --get UserKeyMapping
 pgrep -fl '/Applications/(rcmd|HyperKey)\.app'
 ```
 
-然后验证：单按 Caps 不亮灯、不切大小写、不切输入法；`Caps+F` 切 Chrome，`Caps+D` 切 Zotero。
+然后验证：单按 Caps 不亮灯、不切大小写、不切输入法；`Caps+F` 切 Chrome，`Caps+D` 切 Zotero，`Caps+P` 切 PowerPoint，`Caps+T` 切 iTerm2。
 
 ## 关键约束
 

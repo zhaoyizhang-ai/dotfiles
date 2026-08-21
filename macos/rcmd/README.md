@@ -30,8 +30,18 @@ Caps 作为 HyperKey 并切 App 的完整恢复入口是：
 | Caps+E | Safari |
 | Caps+R | Finder |
 | Caps+C | 备忘录 |
+| Caps+W | 预览 |
+| Caps+M | Music |
+| Caps+T | iTerm2 |
+| Caps+P | PowerPoint |
 
-预览不再占用 `Caps+E`。
+快速重启完整链路：
+
+```bash
+~/.local/bin/rcmd-restart
+```
+
+预览固定使用 `Caps+W`，不占用 `Caps+E`。
 
 ## 不进入仓库
 
