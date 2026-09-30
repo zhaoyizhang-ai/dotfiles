@@ -233,6 +233,7 @@ def export_rcmd_preferences(path: Path) -> None:
     runtime_keys = {
         "dynamicAppKeyAssignments",
         "focusedAppKeyAssignment",
+        "shownPaddleTrialEnded",
     }
     safe = {
         key: value

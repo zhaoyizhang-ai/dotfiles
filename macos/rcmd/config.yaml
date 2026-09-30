@@ -4,35 +4,34 @@
 stages: []
 appKeyAssignments:
   f: {app: /Applications/Google Chrome.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
-  d: {app: /Applications/Zotero.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   s: {app: /Applications/ChatGPT.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   g: {app: /Applications/Obsidian.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   v: {app: /Applications/Visual Studio Code.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   e: {app: /Applications/Safari.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   r: {app: /System/Library/CoreServices/Finder.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
   c: {app: /System/Applications/Notes.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  w: {app: /System/Applications/Preview.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  m: {app: /System/Applications/Music.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  t: {app: /Applications/iTerm.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  p: {app: /Applications/Microsoft PowerPoint.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
+  q: {app: /Applications/Skim.app, launchIfNotRunning: true, whenAlreadyFocusedAction: DoNothing}
 windowKeyAssignments: {}
 ignoredApps: []
 appsWhereRcmdIsPaused: []
 ignoredKeys:
-- b
-- o
-- w
-- a
-- j
-- z
 - i
-- m
-- y
-- x
-- u
-- p
 - n
+- x
 - k
-- h
+- j
 - l
-- t
-- q
+- o
+- h
+- y
+- z
+- u
+- a
+- b
 searchPins: {}
 triggers:
   triggerKeys: [lcmd, lalt, lctrl, lshift]

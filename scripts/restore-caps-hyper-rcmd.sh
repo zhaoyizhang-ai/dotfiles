@@ -7,6 +7,7 @@ HYPERKEY_SHA256="5ef3e724cd7d6ea6d06d65112634cafd6a16f717bfe799efcadcaaeb2598158
 HYPERKEY_URL="https://github.com/n0an/hyperkey/releases/download/v${HYPERKEY_VERSION}/HyperKey.dmg"
 HYPERKEY_APP="/Applications/HyperKey.app"
 HELPER_TARGET="$HOME/.local/bin/caps-hyper-rcmd"
+RESTART_TARGET="$HOME/.local/bin/rcmd-restart"
 LAUNCH_AGENT="$HOME/Library/LaunchAgents/com.az.caps-hyper-rcmd.plist"
 TEMP_DIR="$(mktemp -d -t caps-hyper-restore)"
 MOUNT_DIR="$TEMP_DIR/mount"
@@ -55,8 +56,9 @@ fi
 
 "$REPO_DIR/scripts/restore-rcmd.sh"
 
-mkdir -p "$(dirname "$HELPER_TARGET")" "$(dirname "$LAUNCH_AGENT")"
+mkdir -p "$(dirname "$HELPER_TARGET")" "$(dirname "$RESTART_TARGET")" "$(dirname "$LAUNCH_AGENT")"
 install -m 0755 "$REPO_DIR/scripts/caps-hyper-rcmd.sh" "$HELPER_TARGET"
+install -m 0755 "$REPO_DIR/scripts/rcmd-restart.sh" "$RESTART_TARGET"
 install -m 0644 \
   "$REPO_DIR/macos/keyboard/com.az.caps-hyper-rcmd.plist" \
   "$LAUNCH_AGENT"
@@ -70,3 +72,4 @@ echo "Manual permissions still required:"
 echo "  Accessibility: enable HyperKey and rcmd"
 echo "  Input Monitoring: enable HyperKey"
 echo "After granting permissions, run: $HELPER_TARGET"
+echo "Quick restart command: $RESTART_TARGET"
