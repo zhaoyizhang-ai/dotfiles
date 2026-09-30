@@ -1,0 +1,12 @@
+---
+core:
+  mixed-port: 7897
+  log-level: info
+  allow-lan: false
+  ipv6: true
+  mode: rule
+verge:
+  enable_tun_mode: false
+  enable_auto_launch: false
+  enable_system_proxy: true
+  verge_mixed_port: 7897

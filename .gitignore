@@ -48,3 +48,11 @@ input-method/rime/user.yaml
 input-method/rime/build/
 input-method/rime/sync/
 input-method/rime/*.userdb/
+
+# Clash Verge subscriptions and generated runtime files stay local.
+apps/clash-verge/profiles/
+apps/clash-verge/profiles.yaml
+apps/clash-verge/config.yaml
+apps/clash-verge/verge.yaml
+apps/clash-verge/clash-verge*.yaml
+apps/clash-verge/local/

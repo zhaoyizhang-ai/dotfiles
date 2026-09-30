@@ -29,6 +29,7 @@ brew bundle --file software/Brewfile
 - Rime/Squirrel 输入方案；
 - Caps→HyperKey→rcmd 固定 App 切换。
 - Kando 菜单，以及白名单化的 macOS、Finder、Dock、DockDoor 和 QuickRecorder 偏好。
+- Clash Verge 已有订阅时恢复系统代理与分流；新机器先在应用里导入并选中订阅，再运行 `ruby scripts/clash-routing.rb restore`。参见 `apps/clash-verge/README.md`，禁止把订阅链接和节点凭据提交到仓库。
 
 恢复后由用户在本机重新登录 Codex、Claude、GitHub CLI，并设置秘密值。不要要求用户把秘密提交到本仓库。
 

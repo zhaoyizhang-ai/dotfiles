@@ -13,6 +13,7 @@
 | App 切换 | `macos/keyboard/`、`macos/rcmd/` | Caps→F18→HyperKey→rcmd 整条链及固定 App 映射 |
 | 系统习惯 | `macos/preferences/` | 明确白名单中的 Dock、Finder、键盘、截图、系统快捷键、DockDoor、QuickRecorder 设置 |
 | Kando | `apps/kando/` | 菜单、手势、主题与快捷键，不含 Electron Session/Cookie/缓存 |
+| 代理分流 | `apps/clash-verge/` | 系统代理、7897 端口、规则模式、内网/北大/国内直连，恢复时适配当前订阅代理组 |
 
 `software/Brewfile` 还会显式安装当前映射依赖的 Chrome、Zotero、Obsidian、VS Code、ChatGPT 和 DockDoor；Safari、备忘录由 macOS 自带。
 

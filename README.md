@@ -16,6 +16,7 @@
 - `macos/keyboard/`：Caps→F18→HyperKey→rcmd 的持久化方案，关闭大小写/输入法功能并固定切 App。
 - `macos/preferences/`：白名单化的键盘、Dock、Finder、截图、DockDoor、QuickRecorder 与系统快捷键偏好。
 - `apps/kando/`：Kando 的菜单、手势和外观配置，不含 Electron 会话与 Cookie。
+- `apps/clash-verge/`：系统代理设置、国内/内网直连分流与跨订阅恢复脚本，不含订阅链接和节点凭据。
 - `RESTORE_FOR_AI.md`：给下一个 AI 的安全恢复顺序、禁止项和验收标准。
 - `CONFIG_INVENTORY.md`：本机配置盘点、已备份范围与明确排除项。
 
@@ -56,6 +57,8 @@ rcmd 可运行 `./scripts/restore-rcmd.sh` 单独恢复。完整的 Caps 快速�
 brew bundle --file software/Brewfile
 xargs -L 1 code --install-extension < software/vscode-extensions.txt
 ```
+
+Clash Verge 导入并选中订阅后，运行 `ruby scripts/clash-routing.rb restore` 恢复系统代理和分流。它自动匹配当前订阅的代理组，支持从 GLaDOS 换到 MistyCloud；详情见 [`apps/clash-verge/README.md`](apps/clash-verge/README.md)。
 
 Homebrew 清单会显式补入当前 Caps 映射依赖的 Chrome、Zotero、Obsidian、VS Code、ChatGPT，以及已备份偏好的 DockDoor；Safari 和备忘录由 macOS 自带。
 

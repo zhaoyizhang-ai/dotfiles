@@ -323,6 +323,7 @@ def write_inventory() -> None:
             Path("/Applications/Visual Studio Code.app"): "visual-studio-code",
             Path("/Applications/ChatGPT.app"): "chatgpt",
             Path("/Applications/DockDoor.app"): "dockdoor",
+            Path("/Applications/Clash Verge.app"): "clash-verge-rev",
         }
         content = brewfile.read_text(encoding="utf-8")
         for app_path, cask in portable_apps.items():
@@ -512,6 +513,12 @@ def main() -> None:
         copy_file(kando_source / filename, kando_target / filename)
         if (kando_target / filename).is_file():
             sanitize_json(kando_target / filename)
+
+    # Clash Verge: routing and whitelisted settings, never subscription secrets.
+    subprocess.run(
+        ["ruby", str(REPO / "scripts" / "clash-routing.rb"), "export", "--if-configured"],
+        check=True,
+    )
 
     if Path("/Applications/rcmd.app").exists():
         export_rcmd_preferences(REPO / "macos" / "rcmd" / "preferences.plist")

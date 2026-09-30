@@ -72,6 +72,8 @@ restore_tree "$REPO_DIR/input-method/rime" "$HOME/Library/Rime"
 restore_file "$REPO_DIR/apps/kando/config.json" "$HOME/Library/Application Support/kando/config.json"
 restore_file "$REPO_DIR/apps/kando/menus.json" "$HOME/Library/Application Support/kando/menus.json"
 
+ruby "$REPO_DIR/scripts/clash-routing.rb" restore --if-configured
+
 SQUIRREL_BIN="/Library/Input Methods/Squirrel.app/Contents/MacOS/Squirrel"
 if [[ -x "$SQUIRREL_BIN" ]]; then
   "$SQUIRREL_BIN" --reload
