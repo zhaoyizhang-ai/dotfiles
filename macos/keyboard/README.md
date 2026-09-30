@@ -16,16 +16,17 @@
 | 按键 | App |
 | --- | --- |
 | Caps+F | Google Chrome |
-| Caps+D | Zotero |
 | Caps+S | ChatGPT/Codex |
 | Caps+G | Obsidian |
 | Caps+R | Finder |
 | Caps+V | Visual Studio Code |
 | Caps+E | Safari |
+| Caps+C | 备忘录 |
 | Caps+W | Preview |
 | Caps+M | Music |
 | Caps+T | iTerm2 |
 | Caps+P | PowerPoint |
+| Caps+Q | Skim |
 
 完整映射在 `macos/rcmd/config.yaml`。
 
@@ -68,7 +69,7 @@ hidutil property --get UserKeyMapping
 pgrep -fl '/Applications/(rcmd|HyperKey)\.app'
 ```
 
-然后验证：单按 Caps 不亮灯、不切大小写、不切输入法；`Caps+F` 切 Chrome，`Caps+D` 切 Zotero，`Caps+P` 切 PowerPoint，`Caps+T` 切 iTerm2。
+然后验证：单按 Caps 不亮灯、不切大小写、不切输入法；`Caps+F` 切 Chrome，`Caps+C` 切备忘录，`Caps+P` 切 PowerPoint，`Caps+T` 切 iTerm2，`Caps+Q` 切 Skim。
 
 ## 关键约束
 

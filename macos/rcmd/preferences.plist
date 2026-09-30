@@ -9,7 +9,6 @@
 	<key>appKeyAssignments</key>
 	<array>
 		<string>{"app":{"identifier":"com.google.Chrome","originalName":"Chrome","path":"\/Applications\/Google Chrome.app","switchCount":0,"useCount":0},"index":0,"key":"f","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
-		<string>{"app":{"identifier":"org.zotero.zotero","originalName":"Zotero","path":"\/Applications\/Zotero.app","switchCount":0,"useCount":0},"index":0,"key":"d","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.openai.codex","originalName":"ChatGPT","path":"\/Applications\/ChatGPT.app","switchCount":0,"useCount":0},"index":0,"key":"s","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"md.obsidian","originalName":"Obsidian","path":"\/Applications\/Obsidian.app","switchCount":0,"useCount":0},"index":0,"key":"g","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.microsoft.VSCode","originalName":"Code","path":"\/Applications\/Visual Studio Code.app","switchCount":0,"useCount":0},"index":0,"key":"v","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
@@ -20,6 +19,7 @@
 		<string>{"app":{"identifier":"com.apple.Music","originalName":"Music","path":"\/System\/Applications\/Music.app","switchCount":0,"useCount":0},"index":0,"key":"m","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.googlecode.iterm2","originalName":"iTerm2","path":"\/Applications\/iTerm.app","switchCount":0,"useCount":0},"index":0,"key":"t","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 		<string>{"app":{"identifier":"com.microsoft.Powerpoint","originalName":"PowerPoint","path":"\/Applications\/Microsoft PowerPoint.app","switchCount":0,"useCount":0},"index":0,"key":"p","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
+		<string>{"app":{"identifier":"net.sourceforge.skim-app.skim","originalName":"Skim","path":"\/Applications\/Skim.app","switchCount":0,"useCount":0},"index":0,"key":"q","launchIfNotRunning":true,"whenAlreadyFocusedAction":4}</string>
 	</array>
 	<key>appSort</key>
 	<string>"name"</string>
@@ -83,20 +83,19 @@
 	<array/>
 	<key>ignoredKeys</key>
 	<array>
-		<string>x</string>
-		<string>o</string>
-		<string>u</string>
-		<string>j</string>
 		<string>l</string>
 		<string>a</string>
-		<string>k</string>
-		<string>y</string>
+		<string>u</string>
 		<string>h</string>
 		<string>b</string>
-		<string>q</string>
-		<string>i</string>
+		<string>j</string>
 		<string>n</string>
 		<string>z</string>
+		<string>o</string>
+		<string>k</string>
+		<string>i</string>
+		<string>y</string>
+		<string>x</string>
 	</array>
 	<key>minimizeKey</key>
 	<string>"minus"</string>

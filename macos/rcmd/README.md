@@ -23,7 +23,6 @@ Caps 作为 HyperKey 并切 App 的完整恢复入口是：
 | 按键 | App |
 | --- | --- |
 | Caps+F | Google Chrome |
-| Caps+D | Zotero |
 | Caps+S | ChatGPT / Codex |
 | Caps+G | Obsidian |
 | Caps+V | Visual Studio Code |
@@ -34,6 +33,7 @@ Caps 作为 HyperKey 并切 App 的完整恢复入口是：
 | Caps+M | Music |
 | Caps+T | iTerm2 |
 | Caps+P | PowerPoint |
+| Caps+Q | Skim |
 
 快速重启完整链路：
 
